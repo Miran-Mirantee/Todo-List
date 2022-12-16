@@ -1,15 +1,15 @@
 class project{
     constructor() {
-        this.folder = [];
+        this.list = [];
     }
 
     add(todo) {
-        this.folder.push(todo);
+        this.list.push(todo);
     }
 
     delete(todo) {
-        let index = this.folder.indexOf(todo);
-        this.folder.splice(index, 1);
+        let index = this.list.indexOf(todo);
+        this.list.splice(index, 1);
     }
 }
 
