@@ -1,6 +1,7 @@
 class project{
-    constructor() {
+    constructor(name) {
         this.list = [];
+        this.name = name;
     }
 
     add(todo) {
