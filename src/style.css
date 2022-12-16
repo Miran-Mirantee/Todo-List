@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* temp */
+    height: 100vh;
+}
+
+.project.container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background-color: rgb(255, 175, 175);
+}
+
+.project.name{
+    font-size: 1.5rem;
+}
+
+.todo.container{
+    display: flex;
+    gap: 16px;
+    background-color: rgb(133, 245, 245);
+}
+
