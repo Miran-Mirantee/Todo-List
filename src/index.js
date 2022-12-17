@@ -9,6 +9,8 @@ let todo4 = new todo("title4", "description", "20-12-2023", "high");
 let todo5 = new todo("title5", "description", "20-12-2023", "high");
 let todo6 = new todo("title6", "description", "20-12-2023", "high");
 let project1 = new project("project1");
+let project2 = new project("project2");
+let project3 = new project("project3");
 
 project1.add(todo1);
 project1.add(todo2);
@@ -24,10 +26,22 @@ const createProject = (project) => {
     const list = document.createElement('div');
     list.classList.add('project', 'container');
 
+    const topPanel = document.createElement('div');
+    topPanel.classList.add('project', 'top-panel');
+
     const projectName = document.createElement('div');
     projectName.classList.add('project', 'name')
     projectName.textContent = project.name;
-    list.append(projectName);
+
+    const addBtn = document.createElement('button');
+    addBtn.classList.add('project', 'btn');
+    addBtn.textContent = "add";
+    addBtn.addEventListener('click', () => {
+        displayAddTodoModal();
+    });
+
+    topPanel.append(projectName, addBtn);
+    list.append(topPanel);
 
     let length = project.list.length;
 
@@ -57,4 +71,32 @@ const createProject = (project) => {
     document.body.append(list);
 };
 
+// create a "add todo to project" modal
+const createAddTodoModal = (() => {
+    const modal = document.createElement('div');
+    modal.classList.add('todo', 'modal');
+    
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('todo', 'modal-content');
+
+    const closeBtn = document.createElement('span');
+    closeBtn.classList.add('modal', 'close-btn');
+    closeBtn.textContent = 'X';
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    modalContent.append(closeBtn);
+    modal.append(modalContent)
+    document.body.append(modal);
+})();
+
+// display a "add todo to project" modal
+const displayAddTodoModal = () => {
+    const modal = document.querySelector( '.todo', '.modal');
+    modal.style.display = 'block';
+};
+
 createProject(project1);
+createProject(project2);
+createProject(project3);
