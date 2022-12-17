@@ -1,5 +1,6 @@
 import todo from "./todo";
 import project from "./project";
+import setAttributes from "./setAttrs";
 import './style.css';
 
 let todo1 = new todo("title1", "description", "20-12-2023", "high");
@@ -79,6 +80,13 @@ const createAddTodoModal = (() => {
     const modalContent = document.createElement('div');
     modalContent.classList.add('todo', 'modal-content');
 
+    const topPanel = document.createElement('div');
+    topPanel.classList.add('modal', 'top-panel');
+
+    const header = document.createElement('div');
+    header.classList.add('modal', 'header');
+    header.textContent = 'Add new todo'
+
     const closeBtn = document.createElement('span');
     closeBtn.classList.add('modal', 'close-btn');
     closeBtn.textContent = 'X';
@@ -86,15 +94,82 @@ const createAddTodoModal = (() => {
         modal.style.display = 'none';
     });
 
-    modalContent.append(closeBtn);
+    const inputForm = document.createElement('form');
+    setAttributes(inputForm, {'action': 'javascript:;', 'method': 'post'});
+    inputForm.classList.add('modal', 'input-form');
+
+    // input fields
+    // title
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('modal', 'input-container');
+    const titleLabel = document.createElement('label');
+    setAttributes(titleLabel, {'for': 'title'});
+    titleLabel.textContent = 'Title:';
+    const titleField = document.createElement('input');
+    setAttributes(titleField, {'type': 'text', 'id': 'title', 'name': 'title'});
+    titleContainer.append(titleLabel, titleField);
+    
+    // description
+    const descContainer = document.createElement('div');
+    descContainer.classList.add('modal', 'input-container');
+    const decLabel = document.createElement('label');
+    setAttributes(decLabel, {'for': 'desc'});
+    decLabel.textContent = 'Description:';
+    const descField = document.createElement('input');
+    setAttributes(descField, {'type': 'text', 'id': 'desc', 'name': 'desc'});
+    descContainer.append(decLabel, descField);
+
+    // due date
+    const dueDateContainer = document.createElement('div');
+    dueDateContainer.classList.add('modal', 'input-container');
+    const dueDateLabel = document.createElement('label');
+    setAttributes(dueDateLabel, {'for': 'due_date'});
+    dueDateLabel.textContent = 'Due date:';
+    const dueDateField = document.createElement('input');
+    setAttributes(dueDateField, {'type': 'date', 'id': 'due_date', 'name': 'due_date'});
+    dueDateContainer.append(dueDateLabel, dueDateField);
+
+    // priority
+    const priorityContainer = document.createElement('div');
+    priorityContainer.classList.add('modal', 'input-container');
+    const priorityLabel = document.createElement('label');
+    setAttributes(priorityLabel, {'for': 'priority'});
+    priorityLabel.textContent = 'Priority:';
+    const priorityField = document.createElement('input');
+    setAttributes(priorityField, {'type': 'text', 'id': 'priority', 'name': 'priority'});
+    priorityContainer.append(priorityLabel, priorityField);
+
+    const bottomPanel = document.createElement('div');
+    bottomPanel.classList.add('modal', 'bottom-panel');
+
+    const createBtn = document.createElement('button');
+    setAttributes(createBtn, {'type': 'submit'});
+    createBtn.classList.add('modal', 'btn');
+    createBtn.textContent = 'Create';
+    createBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    
+    const cancelBtn = document.createElement('button')
+    setAttributes(cancelBtn, {'type': 'reset'});
+    cancelBtn.classList.add('modal', 'btn', 'cancel');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    bottomPanel.append(cancelBtn, createBtn);
+
+    inputForm.append(titleContainer, descContainer, dueDateContainer, priorityContainer, bottomPanel);
+    topPanel.append(header, closeBtn);
+    modalContent.append(topPanel, inputForm);
     modal.append(modalContent)
     document.body.append(modal);
 })();
 
 // display a "add todo to project" modal
 const displayAddTodoModal = () => {
-    const modal = document.querySelector( '.todo', '.modal');
-    modal.style.display = 'block';
+    const modal = document.querySelector('.todo', '.modal');
+    modal.style.display = 'flex';
 };
 
 createProject(project1);

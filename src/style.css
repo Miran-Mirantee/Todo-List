@@ -9,6 +9,17 @@ body{
     gap: 32px;
 }
 
+.top-panel{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-panel{
+    display: flex;
+    gap: 4px;
+    justify-content: end;
+}
+
 .project.container{
     display: flex;
     flex-direction: column;
@@ -17,17 +28,14 @@ body{
     background-color: rgb(255, 175, 175);
 }
 
-.project.top-panel {
-    display: flex;
-    justify-content: space-between;
-}
-
 .project.name{
     font-size: 1.5rem;
 }
 
 .todo.modal{
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -39,11 +47,14 @@ body{
 }
 
 .todo.modal-content{
+    display: flex;
+    flex-direction: column;
     background-color: white;
+    gap: 8px;
     margin: 35vh auto;
-    width: 100px;
-    height: 100px;
-    padding: 4px;
+    /* width: 250px;
+    height: 400px; */
+    padding: 8px;
 }
 
 .modal.close-btn{
@@ -54,6 +65,17 @@ body{
 .modal.close-btn:hover,
 .modal.close-btn:focus{
     cursor: pointer;    
+}
+
+.modal.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modal.input-container{
+    display: flex;
+    gap: 4px;
 }
 
 .todo.container{
