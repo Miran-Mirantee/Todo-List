@@ -38,7 +38,7 @@ const createProject = (project) => {
     addBtn.classList.add('project', 'btn');
     addBtn.textContent = "add";
     addBtn.addEventListener('click', () => {
-        displayAddTodoModal();
+        createAddTodoModal(project);
     });
 
     topPanel.append(projectName, addBtn);
@@ -73,7 +73,22 @@ const createProject = (project) => {
 };
 
 // create a "add todo to project" modal
-const createAddTodoModal = (() => {
+const createAddTodoModal = (project) => {
+    
+    // create a field container use in modal
+    const _fieldContainer = (form, type, labelTxt, name) => {
+        const container = document.createElement('div');
+        container.classList.add('modal', 'input-container');
+        const label = document.createElement('label');
+        setAttributes(label, {'for': name});
+        label.textContent = `${labelTxt}:`;
+        const field = document.createElement('input');
+        setAttributes(field, {'type': type, 'id': name, 'name': name});
+        container.append(label, field);
+        console.log(form);
+        form.append(container);
+    };
+
     const modal = document.createElement('div');
     modal.classList.add('todo', 'modal');
     
@@ -91,7 +106,7 @@ const createAddTodoModal = (() => {
     closeBtn.classList.add('modal', 'close-btn');
     closeBtn.textContent = 'X';
     closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+        modal.remove();
     });
 
     const inputForm = document.createElement('form');
@@ -99,45 +114,10 @@ const createAddTodoModal = (() => {
     inputForm.classList.add('modal', 'input-form');
 
     // input fields
-    // title
-    const titleContainer = document.createElement('div');
-    titleContainer.classList.add('modal', 'input-container');
-    const titleLabel = document.createElement('label');
-    setAttributes(titleLabel, {'for': 'title'});
-    titleLabel.textContent = 'Title:';
-    const titleField = document.createElement('input');
-    setAttributes(titleField, {'type': 'text', 'id': 'title', 'name': 'title'});
-    titleContainer.append(titleLabel, titleField);
-    
-    // description
-    const descContainer = document.createElement('div');
-    descContainer.classList.add('modal', 'input-container');
-    const decLabel = document.createElement('label');
-    setAttributes(decLabel, {'for': 'desc'});
-    decLabel.textContent = 'Description:';
-    const descField = document.createElement('input');
-    setAttributes(descField, {'type': 'text', 'id': 'desc', 'name': 'desc'});
-    descContainer.append(decLabel, descField);
-
-    // due date
-    const dueDateContainer = document.createElement('div');
-    dueDateContainer.classList.add('modal', 'input-container');
-    const dueDateLabel = document.createElement('label');
-    setAttributes(dueDateLabel, {'for': 'due_date'});
-    dueDateLabel.textContent = 'Due date:';
-    const dueDateField = document.createElement('input');
-    setAttributes(dueDateField, {'type': 'date', 'id': 'due_date', 'name': 'due_date'});
-    dueDateContainer.append(dueDateLabel, dueDateField);
-
-    // priority
-    const priorityContainer = document.createElement('div');
-    priorityContainer.classList.add('modal', 'input-container');
-    const priorityLabel = document.createElement('label');
-    setAttributes(priorityLabel, {'for': 'priority'});
-    priorityLabel.textContent = 'Priority:';
-    const priorityField = document.createElement('input');
-    setAttributes(priorityField, {'type': 'text', 'id': 'priority', 'name': 'priority'});
-    priorityContainer.append(priorityLabel, priorityField);
+    _fieldContainer(inputForm, 'text', 'Title', 'title');
+    _fieldContainer(inputForm, 'text', 'Description', 'desc');
+    _fieldContainer(inputForm, 'date', 'Due date', 'due_date');
+    _fieldContainer(inputForm, 'text', 'Priority', 'priority');
 
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
@@ -147,29 +127,23 @@ const createAddTodoModal = (() => {
     createBtn.classList.add('modal', 'btn');
     createBtn.textContent = 'Create';
     createBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+        modal.remove();
     });
-    
+
     const cancelBtn = document.createElement('button')
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+        modal.remove();
     });
     bottomPanel.append(cancelBtn, createBtn);
 
-    inputForm.append(titleContainer, descContainer, dueDateContainer, priorityContainer, bottomPanel);
+    inputForm.append(bottomPanel);
     topPanel.append(header, closeBtn);
     modalContent.append(topPanel, inputForm);
     modal.append(modalContent)
-    document.body.append(modal);
-})();
-
-// display a "add todo to project" modal
-const displayAddTodoModal = () => {
-    const modal = document.querySelector('.todo', '.modal');
-    modal.style.display = 'flex';
+    document.body.prepend(modal);
 };
 
 createProject(project1);
