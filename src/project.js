@@ -4,11 +4,11 @@ class project{
         this.name = name;
     }
 
-    add(todo) {
+    addTodo(todo) {
         this.list.push(todo);
     }
 
-    delete(todo) {
+    deleteTodo(todo) {
         let index = this.list.indexOf(todo);
         this.list.splice(index, 1);
     }

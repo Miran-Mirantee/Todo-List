@@ -13,15 +13,15 @@ let project1 = new project("project1");
 let project2 = new project("project2");
 let project3 = new project("project3");
 
-project1.add(todo1);
-project1.add(todo2);
-project1.add(todo3);
-project1.add(todo4);
-project1.add(todo5);
-project1.add(todo6);
+project1.addTodo(todo1);
+project1.addTodo(todo2);
+project1.addTodo(todo3);
+project1.addTodo(todo4);
+project1.addTodo(todo5);
+project1.addTodo(todo6);
 
-project2.add(todo1);
-project2.add(todo2);
+project2.addTodo(todo1);
+project2.addTodo(todo2);
 
 // display a project displaying a list of todo
 const displayProject = (project) => {
@@ -48,8 +48,17 @@ const displayProject = (project) => {
             const priority = document.createElement('div');
             priority.classList.add('todo', 'priority');
             priority.textContent = project.list[i].priority;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('todo', 'btn');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', () => {
+                project.deleteTodo(project.list[i]);
+                list.innerHTML = '';
+                _createListofTodo();
+            });
     
-            todoItem.append(title, desc, dueDate, priority);
+            todoItem.append(title, desc, dueDate, priority, deleteBtn);
             list.append(todoItem);
             container.append(list);
         }
