@@ -28,7 +28,6 @@ const projectList = [];
 projectList.push(project1);
 projectList.push(project2);
 projectList.push(project3);
-console.log(projectList);
 
 const createAddProjectBtn = (() => {
     const addBtn = document.createElement('button');
@@ -103,10 +102,10 @@ const displayProject = (project) => {
     const list = document.createElement('div');
     _createListofTodo();
 
-    const addBtn = document.createElement('button');
-    addBtn.classList.add('add-todo', 'btn', 'project');
-    addBtn.textContent = "add";
-    addBtn.addEventListener('click', () => {
+    const addTodoBtn = document.createElement('button');
+    addTodoBtn.classList.add('add-todo', 'btn', 'project');
+    addTodoBtn.textContent = "Add todo";
+    addTodoBtn.addEventListener('click', () => {
         displayAddTodoModal(project);
         const createTodoBtn = document.querySelector('.btn.create-todo');
         createTodoBtn.addEventListener('click', () => {
@@ -114,10 +113,20 @@ const displayProject = (project) => {
             _createListofTodo();
         });
     });
-    topPanel.append(projectName, addBtn);
 
-    const projectList = document.querySelector('.project.list');
-    projectList.append(container);
+    const deleteProjectBtn = document.createElement('button');
+    deleteProjectBtn.classList.add('delete-project', 'btn', 'project');
+    deleteProjectBtn.textContent = 'Delete project';
+    deleteProjectBtn.addEventListener('click', () => {
+        container.remove();
+        let index = projectList.indexOf(project);
+        projectList.splice(index, 1);
+    });
+
+    topPanel.append(projectName, addTodoBtn, deleteProjectBtn);
+
+    const projectListContainer = document.querySelector('.project.list');
+    projectListContainer.append(container);
 };
 
 // create a field container use in modal
@@ -230,7 +239,6 @@ const displayAddProjectModal = () => {
     createBtn.classList.add('modal', 'btn', 'create-project');
     createBtn.textContent = 'Create';
     createBtn.addEventListener('click', () => {
-        console.log(document.getElementById('project_name').value);
         let newProject = new project(document.getElementById('project_name').value);
         projectList.push(newProject);
         displayProject(newProject);
