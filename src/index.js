@@ -29,6 +29,7 @@ projectList.push(project1);
 projectList.push(project2);
 projectList.push(project3);
 
+// create a button for adding new project to the list
 const createAddProjectBtn = (() => {
     const addBtn = document.createElement('button');
     addBtn.classList.add('add-project', 'btn');
@@ -102,6 +103,7 @@ const displayProject = (project) => {
     const list = document.createElement('div');
     _createListofTodo();
 
+    // add todo to project
     const addTodoBtn = document.createElement('button');
     addTodoBtn.classList.add('add-todo', 'btn', 'project');
     addTodoBtn.textContent = "Add todo";
@@ -114,6 +116,7 @@ const displayProject = (project) => {
         });
     });
 
+    // delete project from the list
     const deleteProjectBtn = document.createElement('button');
     deleteProjectBtn.classList.add('delete-project', 'btn', 'project');
     deleteProjectBtn.textContent = 'Delete project';
@@ -175,6 +178,7 @@ const displayAddTodoModal = (project) => {
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
 
+    // create new todo
     const createBtn = document.createElement('button');
     setAttributes(createBtn, {'type': 'submit'});
     createBtn.classList.add('modal', 'btn', 'create-todo');
@@ -191,6 +195,7 @@ const displayAddTodoModal = (project) => {
         modal.remove();
     });
 
+    // cancel
     const cancelBtn = document.createElement('button')
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
@@ -234,6 +239,7 @@ const displayAddProjectModal = () => {
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
 
+    // create new project
     const createBtn = document.createElement('button');
     setAttributes(createBtn, {'type': 'submit'});
     createBtn.classList.add('modal', 'btn', 'create-project');
@@ -245,6 +251,7 @@ const displayAddProjectModal = () => {
         modal.remove();
     });
 
+    // cancel
     const cancelBtn = document.createElement('button')
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
