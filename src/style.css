@@ -1,7 +1,7 @@
 body{
     margin: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 
     /* temp */
@@ -18,6 +18,25 @@ body{
     display: flex;
     gap: 4px;
     justify-content: end;
+}
+
+.add-project.btn{
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+}
+
+.project.list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(122, 248, 122);
+    flex-wrap: wrap;
+
+    /* temp */
+    height: 100vh;
+    width: 70vw;
+    gap: 32px;
 }
 
 .project.container{
@@ -45,7 +64,7 @@ body{
     background-color: rgb(133, 245, 245);
 }
 
-.todo.modal{
+.modal-background{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +78,7 @@ body{
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.todo.modal-content{
+.modal-content{
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -70,13 +89,13 @@ body{
     padding: 8px;
 }
 
-.modal.close-btn{
+.modal.close.btn{
     color: black;
     float: right;
 }
 
-.modal.close-btn:hover,
-.modal.close-btn:focus{
+.modal.close.btn:hover,
+.modal.close.btn:focus{
     cursor: pointer;    
 }
 
