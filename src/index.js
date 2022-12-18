@@ -23,8 +23,8 @@ project1.add(todo6);
 project2.add(todo1);
 project2.add(todo2);
 
-// create a project displaying a list of todo
-const createProject = (project) => {
+// display a project displaying a list of todo
+const displayProject = (project) => {
     // create a list of todo
     const _createListofTodo = () => {
         list.classList.add('todo', 'list');
@@ -74,7 +74,7 @@ const createProject = (project) => {
     addBtn.classList.add('project', 'btn');
     addBtn.textContent = "add";
     addBtn.addEventListener('click', () => {
-        createAddTodoModal(project);
+        displayAddTodoModal(project);
         const createTodoBtn = document.querySelector('.modal.btn:not(.cancel)');
         createTodoBtn.addEventListener('click', () => {
             list.innerHTML = '';
@@ -86,9 +86,8 @@ const createProject = (project) => {
     document.body.append(container);
 };
 
-// create a "add todo to project" modal
-const createAddTodoModal = (project) => {
-
+// display a "add todo to project" modal
+const displayAddTodoModal = (project) => {
     // create a field container use in modal
     const _fieldContainer = (type, labelTxt, name) => {
         const container = document.createElement('div');
@@ -163,6 +162,6 @@ const createAddTodoModal = (project) => {
     document.body.prepend(modal);
 };
 
-createProject(project1);
-createProject(project2);
-createProject(project3);
+displayProject(project1);
+displayProject(project2);
+displayProject(project3);
