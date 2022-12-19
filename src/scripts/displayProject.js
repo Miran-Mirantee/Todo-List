@@ -1,4 +1,5 @@
 import {displayAddTodoModal} from "./displayModal";
+import setAttributes from "./setAttrs";
 
 // create a list of projects 
 const _createProjectList = (() => {
@@ -9,6 +10,13 @@ const _createProjectList = (() => {
 
 // display a project displaying a list of todo
 const displayProject = (projectList, project) => {
+
+    // change project's name
+    const _changeProjectName = () => {
+        projectName.toggleAttribute('disabled');
+        project.editName(projectName.value);
+    };
+
     // create a list of todo
     const _createListofTodo = () => {
         list.classList.add('todo', 'list');
@@ -54,9 +62,10 @@ const displayProject = (projectList, project) => {
     const topPanel = document.createElement('div');
     topPanel.classList.add('project', 'top-panel');
 
-    const projectName = document.createElement('div');
+    const projectName = document.createElement('input');
     projectName.classList.add('project', 'name')
-    projectName.textContent = project.name;
+    setAttributes(projectName, {'type': 'text', 'value': project.name, 'name': 'project_name', 'disabled': ''});
+    projectName.addEventListener('keypress', (e) => {if (e.key === 'Enter') {_changeProjectName();}});
 
     container.append(topPanel);
 
@@ -76,6 +85,12 @@ const displayProject = (projectList, project) => {
         });
     });
 
+    // change project's name
+    const changeProjectNameBtn = document.createElement('button');
+    changeProjectNameBtn.classList.add('change-name-project', 'btn', 'project');
+    changeProjectNameBtn.textContent = 'Change name';
+    changeProjectNameBtn.addEventListener('click', () => _changeProjectName());
+
     // delete project from the list
     const deleteProjectBtn = document.createElement('button');
     deleteProjectBtn.classList.add('delete-project', 'btn', 'project');
@@ -86,7 +101,7 @@ const displayProject = (projectList, project) => {
         projectList.splice(index, 1);
     });
 
-    topPanel.append(projectName, addTodoBtn, deleteProjectBtn);
+    topPanel.append(projectName, changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
 
     const projectListContainer = document.querySelector('.project.list');
     projectListContainer.append(container);

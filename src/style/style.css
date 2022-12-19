@@ -14,6 +14,10 @@ body{
     justify-content: space-between;
 }
 
+.project.top-panel{
+    gap: 8px;
+}
+
 .bottom-panel{
     display: flex;
     gap: 4px;
@@ -49,6 +53,14 @@ body{
 
 .project.name{
     font-size: 1.5rem;
+    border: none;
+    outline: none;
+}
+
+/* temp */
+.project.name:disabled{
+    color: black;
+    background-color: transparent;
 }
 
 .todo.list{
@@ -59,7 +71,8 @@ body{
 
 .todo.container{
     display: flex;
-    gap: 16px;
+    justify-content: space-evenly;
+    /* gap: 16px; */
     padding: 4px;
     background-color: rgb(133, 245, 245);
 }
