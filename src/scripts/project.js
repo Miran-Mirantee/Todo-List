@@ -15,8 +15,6 @@ class project{
 
     editName(newName) {
         this.name = newName;
-        // temp
-        console.log(this.name);
     }
 }
 

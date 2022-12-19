@@ -17,6 +17,13 @@ const displayProject = (projectList, project) => {
         project.editName(projectName.value);
     };
 
+    // delete project from a list
+    const _deleteProject = () => {
+        container.remove();
+        let index = projectList.indexOf(project);
+        projectList.splice(index, 1);
+    };
+
     // create a list of todo
     const _createListofTodo = () => {
         list.classList.add('todo', 'list');
@@ -46,14 +53,19 @@ const displayProject = (projectList, project) => {
             deleteBtn.textContent = 'Delete';
             deleteBtn.addEventListener('click', () => {
                 project.deleteTodo(project.list[i]);
-                list.innerHTML = '';
-                _createListofTodo();
+                _refreshListofTodo();
             });
     
             todoItem.append(title, desc, dueDate, priority, deleteBtn);
             list.append(todoItem);
             container.append(list);
         }
+    };
+
+    // refresh a list of todo in a project
+    const _refreshListofTodo = () => {
+        list.innerHTML = '';
+        _createListofTodo();
     };
 
     const container = document.createElement('div');
@@ -79,10 +91,7 @@ const displayProject = (projectList, project) => {
     addTodoBtn.addEventListener('click', () => {
         displayAddTodoModal(project);
         const createTodoBtn = document.querySelector('.btn.create-todo');
-        createTodoBtn.addEventListener('click', () => {
-            list.innerHTML = '';
-            _createListofTodo();
-        });
+        createTodoBtn.addEventListener('click', () => _refreshListofTodo());
     });
 
     // change project's name
@@ -95,11 +104,7 @@ const displayProject = (projectList, project) => {
     const deleteProjectBtn = document.createElement('button');
     deleteProjectBtn.classList.add('delete-project', 'btn', 'project');
     deleteProjectBtn.textContent = 'Delete project';
-    deleteProjectBtn.addEventListener('click', () => {
-        container.remove();
-        let index = projectList.indexOf(project);
-        projectList.splice(index, 1);
-    });
+    deleteProjectBtn.addEventListener('click', () => _deleteProject());
 
     topPanel.append(projectName, changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
 
