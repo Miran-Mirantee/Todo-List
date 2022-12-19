@@ -4,16 +4,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/index.js',
-    project: './src/project.js',
-    todo: './src/todo.js',
-    displayProject: './src/displayProject.js',
-    displayModal: './src/displayModal.js',
+    index: './src/scripts/index.js',
+    // project: './src/scripts/project.js',
+    // projectList: './src/scripts/projectList.js',
+    // todo: './src/scripts/todo.js',
+    // setAttrs: './src/scripts/setAttrs.js',
+    // displayProject: './src/scripts/displayProject.js',
+    // displayModal: './src/scripts/displayModal.js',
+    // addProject: './src/scripts/addProject.js',
   },
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./src/html/index.html",
     }),
   ],
   output: {

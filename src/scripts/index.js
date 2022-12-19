@@ -1,7 +1,7 @@
 import displayProject from "./displayProject";
 import projectList from "./projectList";
 import "./addProject";
-import "./style.css";
+import "../style/style.css";
 
 console.log(projectList);
 
