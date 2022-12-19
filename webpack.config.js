@@ -7,6 +7,8 @@ module.exports = {
     index: './src/index.js',
     project: './src/project.js',
     todo: './src/todo.js',
+    displayProject: './src/displayProject.js',
+    displayModal: './src/displayModal.js',
   },
   devtool: 'inline-source-map',
   plugins: [
