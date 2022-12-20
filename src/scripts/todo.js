@@ -5,7 +5,11 @@ class todo {
         this.dueDate = dueDate;
         this.priority = priority;
         this.isDone = false;
-    }  
+    }
+
+    toggleIsDone() {
+        this.isDone = !this.isDone;
+    }
 }
 
 export default todo;

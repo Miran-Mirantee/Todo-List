@@ -24,13 +24,18 @@ const displayProject = (projectList, project) => {
         projectList.splice(index, 1);
     };
 
-    // create a list of todo
+    // create a list of todo in project
     const _createListofTodo = () => {
         list.classList.add('todo', 'list');
         let length = project.list.length;
         for (let i = 0; i < length; i++) {
             const todoItem = document.createElement('div');
             todoItem.classList.add('todo', 'container');
+
+            const isDone = document.createElement('input');
+            isDone.classList.add('todo', 'isDone');
+            isDone.addEventListener('click', () => _toggleTodoIsDone(isDone, project.list[i]));
+            setAttributes(isDone, {'type': 'checkbox', 'name': 'is_done', 'value': project.list[i].isDone});
     
             const title = document.createElement('div');
             title.classList.add('todo', 'title');
@@ -51,12 +56,9 @@ const displayProject = (projectList, project) => {
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('todo', 'btn');
             deleteBtn.textContent = 'Delete';
-            deleteBtn.addEventListener('click', () => {
-                project.deleteTodo(project.list[i]);
-                _refreshListofTodo();
-            });
+            deleteBtn.addEventListener('click', () => _deleteTodo(project.list[i]));
     
-            todoItem.append(title, desc, dueDate, priority, deleteBtn);
+            todoItem.append(isDone, title, desc, dueDate, priority, deleteBtn);
             list.append(todoItem);
             container.append(list);
         }
@@ -66,6 +68,25 @@ const displayProject = (projectList, project) => {
     const _refreshListofTodo = () => {
         list.innerHTML = '';
         _createListofTodo();
+    };
+
+    // delete a todo from the project
+    const _deleteTodo = (todo) => {
+        project.deleteTodo(todo);
+        _refreshListofTodo();
+    };
+
+    // add todo to the project
+    const _addTodoToProject = () => {
+        displayAddTodoModal(project);
+        const createTodoBtn = document.querySelector('.btn.create-todo');
+        createTodoBtn.addEventListener('click', () => _refreshListofTodo());
+    };
+
+    // toggle isDone in todo
+    const _toggleTodoIsDone = (input, todo) => {
+        todo.toggleIsDone();
+        input.setAttribute('value', todo.isDone);
     };
 
     const container = document.createElement('div');
@@ -88,11 +109,7 @@ const displayProject = (projectList, project) => {
     const addTodoBtn = document.createElement('button');
     addTodoBtn.classList.add('add-todo', 'btn', 'project');
     addTodoBtn.textContent = "Add todo";
-    addTodoBtn.addEventListener('click', () => {
-        displayAddTodoModal(project);
-        const createTodoBtn = document.querySelector('.btn.create-todo');
-        createTodoBtn.addEventListener('click', () => _refreshListofTodo());
-    });
+    addTodoBtn.addEventListener('click', () => _addTodoToProject());
 
     // change project's name
     const changeProjectNameBtn = document.createElement('button');
