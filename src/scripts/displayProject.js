@@ -29,36 +29,48 @@ const displayProject = (projectList, project) => {
         list.classList.add('todo', 'list');
         let length = project.list.length;
         for (let i = 0; i < length; i++) {
-            const todoItem = document.createElement('div');
+            const todoItem = document.createElement('form');
             todoItem.classList.add('todo', 'container');
+            setAttributes(todoItem, {'action': 'javascript:;', 'method': 'post'});
 
             const isDone = document.createElement('input');
             isDone.classList.add('todo', 'isDone');
             isDone.addEventListener('click', () => _toggleTodoIsDone(isDone, project.list[i]));
             setAttributes(isDone, {'type': 'checkbox', 'name': 'is_done', 'value': project.list[i].isDone});
     
-            const title = document.createElement('div');
+            const title = document.createElement('input');
             title.classList.add('todo', 'title');
-            title.textContent = project.list[i].title;
+            setAttributes(title, {'type': 'text', 'name': 'title', 'value': project.list[i].title, 'disabled': ''});
     
-            const desc = document.createElement('div');
+            const desc = document.createElement('input');
             desc.classList.add('todo', 'desc');
-            desc.textContent = project.list[i].desc;
-    
-            const dueDate = document.createElement('div');
+            setAttributes(desc, {'type': 'text', 'name': 'desc', 'value': project.list[i].desc, 'disabled': ''});
+
+            const dueDate = document.createElement('input');
             dueDate.classList.add('todo', 'date');
-            dueDate.textContent = project.list[i].dueDate;
-    
-            const priority = document.createElement('div');
+            setAttributes(dueDate, {'type': 'date', 'name': 'due_date', 'value': project.list[i].dueDate, 'disabled': ''});
+
+            const priority = document.createElement('input');
             priority.classList.add('todo', 'priority');
-            priority.textContent = project.list[i].priority;
+            setAttributes(priority, {'type': 'text', 'name': 'priority', 'value': project.list[i].priority, 'disabled': ''});
+
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('todo', 'edit-todo', 'btn');
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => {
+                title.toggleAttribute('disabled');
+                desc.toggleAttribute('disabled');
+                dueDate.toggleAttribute('disabled');
+                priority.toggleAttribute('disabled');
+                project.list[i].editTodo(title.value, desc.value, dueDate.value, priority.value);
+            });
 
             const deleteBtn = document.createElement('button');
-            deleteBtn.classList.add('todo', 'btn');
+            deleteBtn.classList.add('todo', 'delete-todo', 'btn');
             deleteBtn.textContent = 'Delete';
             deleteBtn.addEventListener('click', () => _deleteTodo(project.list[i]));
     
-            todoItem.append(isDone, title, desc, dueDate, priority, deleteBtn);
+            todoItem.append(isDone, title, desc, dueDate, priority, editBtn, deleteBtn);
             list.append(todoItem);
             container.append(list);
         }

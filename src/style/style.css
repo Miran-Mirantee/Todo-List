@@ -71,10 +71,20 @@ body{
 
 .todo.container{
     display: flex;
-    justify-content: space-evenly;
-    /* gap: 16px; */
+    /* justify-content: space-evenly; */
+    gap: 16px;
     padding: 4px;
     background-color: rgb(133, 245, 245);
+}
+
+input.todo{
+    border: none;
+    outline: none;
+}
+
+input.todo:disabled{
+    background-color: transparent;
+    color: black;
 }
 
 .modal-background{

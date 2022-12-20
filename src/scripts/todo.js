@@ -10,6 +10,13 @@ class todo {
     toggleIsDone() {
         this.isDone = !this.isDone;
     }
+
+    editTodo(newTitle, newDesc, newDueDate, newPriority) {
+        this.title = newTitle;
+        this.desc = newDesc;
+        this.dueDate = newDueDate;
+        this.priority = newPriority;
+    }
 }
 
 export default todo;
