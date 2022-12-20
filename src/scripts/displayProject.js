@@ -57,13 +57,7 @@ const displayProject = (projectList, project) => {
             const editBtn = document.createElement('button');
             editBtn.classList.add('todo', 'edit-todo', 'btn');
             editBtn.textContent = 'Edit';
-            editBtn.addEventListener('click', () => {
-                title.toggleAttribute('disabled');
-                desc.toggleAttribute('disabled');
-                dueDate.toggleAttribute('disabled');
-                priority.toggleAttribute('disabled');
-                project.list[i].editTodo(title.value, desc.value, dueDate.value, priority.value);
-            });
+            editBtn.addEventListener('click', () => _editTodo(project.list[i], title, desc, dueDate, priority));
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('todo', 'delete-todo', 'btn');
@@ -93,6 +87,15 @@ const displayProject = (projectList, project) => {
         displayAddTodoModal(project);
         const createTodoBtn = document.querySelector('.btn.create-todo');
         createTodoBtn.addEventListener('click', () => _refreshListofTodo());
+    };
+
+    // edit todo in the project
+    const _editTodo = (todo, title, desc, dueDate, priority) => {
+        title.toggleAttribute('disabled');
+        desc.toggleAttribute('disabled');
+        dueDate.toggleAttribute('disabled');
+        priority.toggleAttribute('disabled');
+        todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
     };
 
     // toggle isDone in todo
