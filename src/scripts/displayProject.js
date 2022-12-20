@@ -33,6 +33,19 @@ const displayProject = (projectList, project) => {
             todoItem.classList.add('todo', 'container');
             setAttributes(todoItem, {'action': 'javascript:;', 'method': 'post'});
 
+            // store all todo
+            const todoPanel = document.createElement('div');
+            todoPanel.classList.add('todo', 'todo-panel');
+
+            // store all todo except desc
+            const noDescPanel = document.createElement('div');
+            noDescPanel.classList.add('todo', 'todo-noDesc-panel');
+
+            // store desc
+            const expandPanel = document.createElement('div');
+            expandPanel.classList.add('todo', 'expand-panel', 'hidden');
+
+            // todo
             const isDone = document.createElement('input');
             isDone.classList.add('todo', 'isDone');
             isDone.addEventListener('click', () => _toggleTodoIsDone(isDone, project.list[i]));
@@ -54,17 +67,32 @@ const displayProject = (projectList, project) => {
             priority.classList.add('todo', 'priority');
             setAttributes(priority, {'type': 'text', 'name': 'priority', 'value': project.list[i].priority, 'disabled': ''});
 
+            noDescPanel.append(isDone, title, dueDate, priority);
+            expandPanel.append(desc);
+
+            // store buttons
+            const btnPanel = document.createElement('div');
+            btnPanel.classList.add('todo', 'btn-panel');
+
+            // buttons
+            const expandBtn = document.createElement('button');
+            expandBtn.classList.add('todo', 'expand-todo', 'btn');
+            expandBtn.textContent = 'Expand';
+            expandBtn.addEventListener('click', () => expandPanel.classList.toggle('hidden'));
+
             const editBtn = document.createElement('button');
             editBtn.classList.add('todo', 'edit-todo', 'btn');
             editBtn.textContent = 'Edit';
-            editBtn.addEventListener('click', () => _editTodo(project.list[i], title, desc, dueDate, priority));
+            editBtn.addEventListener('click', () => _editTodo(project.list[i], title, desc, dueDate, priority, expandPanel));
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('todo', 'delete-todo', 'btn');
             deleteBtn.textContent = 'Delete';
             deleteBtn.addEventListener('click', () => _deleteTodo(project.list[i]));
     
-            todoItem.append(isDone, title, desc, dueDate, priority, editBtn, deleteBtn);
+            todoPanel.append(noDescPanel, expandPanel);
+            btnPanel.append(expandBtn, editBtn, deleteBtn);
+            todoItem.append(todoPanel, btnPanel);
             list.append(todoItem);
             container.append(list);
         }
@@ -90,7 +118,8 @@ const displayProject = (projectList, project) => {
     };
 
     // edit todo in the project
-    const _editTodo = (todo, title, desc, dueDate, priority) => {
+    const _editTodo = (todo, title, desc, dueDate, priority, expandPanel) => {
+        expandPanel.classList.remove('hidden');
         title.toggleAttribute('disabled');
         desc.toggleAttribute('disabled');
         dueDate.toggleAttribute('disabled');
