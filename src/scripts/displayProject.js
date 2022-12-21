@@ -82,9 +82,11 @@ const displayProject = (projectList, project) => {
             expandBtn.addEventListener('click', () => expandPanel.classList.toggle('hidden'));
 
             const editBtn = document.createElement('button');
-            editBtn.classList.add('todo', 'edit-todo', 'btn');
+            editBtn.classList.add('todo', 'edit-todo', 'btn', 'not-editable');
             editBtn.textContent = 'Edit';
-            editBtn.addEventListener('click', () => _editTodo(project.list[i], title, desc, dueDate, priority, expandPanel));
+            editBtn.addEventListener('click', () => {
+                _editTodo(project.list[i], title, desc, dueDate, priority, expandPanel, editBtn);
+            });
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('todo', 'delete-todo', 'btn');
@@ -119,13 +121,16 @@ const displayProject = (projectList, project) => {
     };
 
     // edit todo in the project
-    const _editTodo = (todo, title, desc, dueDate, priority, expandPanel) => {
+    const _editTodo = (todo, title, desc, dueDate, priority, expandPanel, editBtn) => {
         expandPanel.classList.remove('hidden');
         title.toggleAttribute('disabled');
         desc.toggleAttribute('disabled');
         dueDate.toggleAttribute('disabled');
         priority.toggleAttribute('disabled');
-        todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
+        if (!editBtn.classList.contains('not-editable')) {
+            todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
+        }
+        editBtn.classList.toggle('not-editable');
     };
 
     // toggle isDone in todo
