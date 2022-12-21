@@ -5,7 +5,7 @@ import displayProject from "./displayProject";
 import setAttributes from "./setAttrs";
 
 // create a field container use in modal
-const _createFieldContainer = (form, type, labelTxt, name) => {
+const _createFieldContainer = (form, type, labelTxt, name, required) => {
     const container = document.createElement('div');
     container.classList.add('modal', 'input-container');
     const label = document.createElement('label');
@@ -13,6 +13,9 @@ const _createFieldContainer = (form, type, labelTxt, name) => {
     label.textContent = `${labelTxt}:`;
     const field = document.createElement('input');
     setAttributes(field, {'type': type, 'id': name, 'name': name});
+    if (required) {
+        field.setAttribute('required', '');
+    }
     container.append(label, field);
     form.append(container);
 };
@@ -42,10 +45,10 @@ const displayAddTodoModal = (project) => {
     inputForm.classList.add('modal', 'input-form');
 
     // input fields
-    _createFieldContainer(inputForm, 'text', 'Title', 'title');
-    _createFieldContainer(inputForm, 'text', 'Description', 'desc');
-    _createFieldContainer(inputForm, 'date', 'Due date', 'due_date');
-    _createFieldContainer(inputForm, 'text', 'Priority', 'priority');
+    _createFieldContainer(inputForm, 'text', 'Title', 'title', true);
+    _createFieldContainer(inputForm, 'text', 'Description (Optional)', 'desc', false);
+    _createFieldContainer(inputForm, 'date', 'Due date', 'due_date', true);
+    _createFieldContainer(inputForm, 'text', 'Priority', 'priority', true);
 
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
@@ -56,15 +59,21 @@ const displayAddTodoModal = (project) => {
     createBtn.classList.add('modal', 'btn', 'create-todo');
     createBtn.textContent = 'Create';
     createBtn.addEventListener('click', () => {
-        project.addTodo(
-            new todo(
-                document.getElementById('title').value,
-                document.getElementById('desc').value,
-                document.getElementById('due_date').value,
-                document.getElementById('priority').value
-            )
-        );
-        modal.remove();
+        // check validation
+        let titleIsValid = document.getElementById('title').checkValidity();
+        let dueDateIsValid = document.getElementById('due_date').checkValidity();
+        let priorityIsValid = document.getElementById('priority').checkValidity();
+        if (titleIsValid && dueDateIsValid && priorityIsValid) {
+            project.addTodo(
+                new todo(
+                    document.getElementById('title').value,
+                    document.getElementById('desc').value,
+                    document.getElementById('due_date').value,
+                    document.getElementById('priority').value
+                )
+            );
+            modal.remove();
+        }
     });
 
     // cancel
@@ -106,7 +115,7 @@ const displayAddProjectModal = () => {
     setAttributes(inputForm, {'action': 'javascript:;', 'method': 'post'});
     inputForm.classList.add('modal', 'input-form');
 
-    _createFieldContainer(inputForm, 'text', 'Project Name', 'project_name');
+    _createFieldContainer(inputForm, 'text', 'Project Name', 'project_name', true);
 
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
@@ -117,10 +126,14 @@ const displayAddProjectModal = () => {
     createBtn.classList.add('modal', 'btn', 'create-project');
     createBtn.textContent = 'Create';
     createBtn.addEventListener('click', () => {
-        let newProject = new project(document.getElementById('project_name').value);
-        projectList.push(newProject);
-        displayProject(projectList, newProject);
-        modal.remove();
+        // check validation
+        let projectNameIsValid = document.getElementById('project_name').checkValidity();
+        if (projectNameIsValid) {
+            let newProject = new project(document.getElementById('project_name').value);
+            projectList.push(newProject);
+            displayProject(projectList, newProject);
+            modal.remove();
+        }
     });
 
     // cancel
