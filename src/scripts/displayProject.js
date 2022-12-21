@@ -55,9 +55,10 @@ const displayProject = (projectList, project) => {
             title.classList.add('todo', 'title');
             setAttributes(title, {'type': 'text', 'name': 'title', 'value': project.list[i].title, 'disabled': ''});
     
-            const desc = document.createElement('input');
+            const desc = document.createElement('textarea');
             desc.classList.add('todo', 'desc');
-            setAttributes(desc, {'type': 'text', 'name': 'desc', 'value': project.list[i].desc, 'disabled': ''});
+            desc.textContent = project.list[i].desc;
+            setAttributes(desc, {'name': 'desc', 'disabled': ''});
 
             const dueDate = document.createElement('input');
             dueDate.classList.add('todo', 'date');
