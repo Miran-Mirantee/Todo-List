@@ -4,12 +4,12 @@ import project from "./project";
 const projectList = [];
 
 // temp data
-let todo1 = new todo("title1", "description", "20-12-2023", "high");
-let todo2 = new todo("title2", "description", "20-12-2023", "high");
-let todo3 = new todo("title3", "description", "20-12-2023", "high");
-let todo4 = new todo("title4", "description", "20-12-2023", "high");
-let todo5 = new todo("title5", "description", "20-12-2023", "high");
-let todo6 = new todo("title6", "description", "20-12-2023", "high");
+let todo1 = new todo("title1", "description", "2023-03-22", "high");
+let todo2 = new todo("title2", "description", "2023-03-22", "high");
+let todo3 = new todo("title3", "description", "2023-03-22", "high");
+let todo4 = new todo("title4", "description", "2023-03-22", "high");
+let todo5 = new todo("title5", "description", "2023-03-22", "high");
+let todo6 = new todo("title6", "description", "2023-03-22", "high");
 let project1 = new project("project1");
 let project2 = new project("project2");
 let project3 = new project("project3");
