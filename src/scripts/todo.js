@@ -16,7 +16,6 @@ class todo {
         this.desc = newDesc;
         this.dueDate = newDueDate;
         this.priority = newPriority;
-        console.log('edited');
     }
 }
 

@@ -114,8 +114,8 @@ const displayProject = (projectList, project) => {
     };
 
     // add todo to the project
-    const _addTodoToProject = () => {
-        displayAddTodoModal(project);
+    const _addTodoToProject = (btn) => {
+        displayAddTodoModal(project, btn);
         const createTodoBtn = document.querySelector('.btn.create-todo');
         createTodoBtn.addEventListener('click', () => _refreshListofTodo());
     };
@@ -159,7 +159,12 @@ const displayProject = (projectList, project) => {
     const addTodoBtn = document.createElement('button');
     addTodoBtn.classList.add('add-todo', 'btn', 'project');
     addTodoBtn.textContent = "Add todo";
-    addTodoBtn.addEventListener('click', () => _addTodoToProject());
+    addTodoBtn.addEventListener('click', () => {
+        if (!addTodoBtn.classList.contains('active')) {
+            addTodoBtn.classList.add('active');
+            _addTodoToProject(addTodoBtn)
+        }
+    });
 
     // change project's name
     const changeProjectNameBtn = document.createElement('button');

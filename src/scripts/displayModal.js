@@ -6,11 +6,12 @@ import setAttributes from "./setAttrs";
 
 // create a field container use in modal
 const _createFieldContainer = (form, type, labelTxt, name, required) => {
+    // check if the input field has required attribute
     const _checkRequirement = (field) => {
         if (required) {
             field.setAttribute('required', '');
         }
-    }
+    };
 
     const container = document.createElement('div');
     container.classList.add('modal', 'input-container');
@@ -74,8 +75,14 @@ const _createPriorityDropDown = (form, labelTxt, name, required) => {
     form.append(container);
 }
 
+// enable button to be clickable again
+const _enableButton = (btn, modal) => {
+    btn.classList.toggle('active');
+    modal.remove();
+};
+
 // display a "add todo to project" modal
-const displayAddTodoModal = (project) => {
+const displayAddTodoModal = (project, btn) => {
     const modal = document.createElement('div');
     modal.classList.add('todo', 'modal-background');
     
@@ -92,7 +99,7 @@ const displayAddTodoModal = (project) => {
     const closeBtn = document.createElement('span');
     closeBtn.classList.add('modal', 'close', 'btn');
     closeBtn.textContent = 'X';
-    closeBtn.addEventListener('click', () => modal.remove());
+    closeBtn.addEventListener('click', () => _enableButton(btn, modal));
 
     const inputForm = document.createElement('form');
     setAttributes(inputForm, {'action': 'javascript:;', 'method': 'post'});
@@ -126,7 +133,7 @@ const displayAddTodoModal = (project) => {
                     document.getElementById('priority').value
                 )
             );
-            modal.remove();
+            _enableButton(btn, modal)
         }
     });
 
@@ -135,7 +142,7 @@ const displayAddTodoModal = (project) => {
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
     cancelBtn.textContent = 'Cancel';
-    cancelBtn.addEventListener('click', () => modal.remove());
+    cancelBtn.addEventListener('click', () => _enableButton(btn, modal));
     bottomPanel.append(cancelBtn, createBtn);
 
     inputForm.append(bottomPanel);
@@ -146,7 +153,7 @@ const displayAddTodoModal = (project) => {
 };
 
 // display a "add project to a list of projects" modal
-const displayAddProjectModal = () => {
+const displayAddProjectModal = (btn) => {
     const modal = document.createElement('div');
     modal.classList.add('project', 'modal-background');
 
@@ -163,7 +170,7 @@ const displayAddProjectModal = () => {
     const closeBtn = document.createElement('span');
     closeBtn.classList.add('modal', 'close', 'btn');
     closeBtn.textContent = 'X';
-    closeBtn.addEventListener('click', () => modal.remove());
+    closeBtn.addEventListener('click', () => _enableButton(btn, modal));
 
     const inputForm = document.createElement('form');
     setAttributes(inputForm, {'action': 'javascript:;', 'method': 'post'});
@@ -186,7 +193,7 @@ const displayAddProjectModal = () => {
             let newProject = new project(document.getElementById('project_name').value);
             projectList.push(newProject);
             displayProject(projectList, newProject);
-            modal.remove();
+            _enableButton(btn, modal);
         }
     });
 
@@ -195,7 +202,7 @@ const displayAddProjectModal = () => {
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
     cancelBtn.textContent = 'Cancel';
-    cancelBtn.addEventListener('click', () => modal.remove());
+    cancelBtn.addEventListener('click', () => _enableButton(btn, modal));
     bottomPanel.append(cancelBtn, createBtn);
 
     inputForm.append(bottomPanel);

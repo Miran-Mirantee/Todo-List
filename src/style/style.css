@@ -125,6 +125,7 @@ textarea.todo{
 
 textarea.todo:disabled{
     background-color: transparent;
+    color: black;
 }
 
 .modal-background{

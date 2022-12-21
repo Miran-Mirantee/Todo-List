@@ -6,7 +6,10 @@ const _createAddProjectBtn = (() => {
     addBtn.classList.add('add-project', 'btn');
     addBtn.textContent = 'Add Project';
     addBtn.addEventListener('click', () => {
-        displayAddProjectModal();
+        if (!addBtn.classList.contains('active')) {
+            addBtn.classList.toggle('active');
+            displayAddProjectModal(addBtn);
+        }
     });
     document.body.prepend(addBtn);
 })();
