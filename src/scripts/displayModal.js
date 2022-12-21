@@ -20,6 +20,46 @@ const _createFieldContainer = (form, type, labelTxt, name, required) => {
     form.append(container);
 };
 
+// create a dropdown container use in modal
+const _createDropDown = (form, labelTxt, name, required) => {
+    const container = document.createElement('div');
+    container.classList.add('modal', 'input-container');
+    const label = document.createElement('label');
+    setAttributes(label, {'for': name});
+    label.textContent = `${labelTxt}:`;
+    const select = document.createElement('select');
+    setAttributes(select, {'id': name, 'name': name});
+    if (required) {
+        select.setAttribute('required', '');
+    }
+    for (let i = 1; i <= 3; i++) {
+        const option = document.createElement('option');
+        let priority;
+        let priorityTxt;
+        switch(i) {
+            case 1:
+                priority = 'low';
+                priorityTxt = 'Low';
+                break;
+            case 2:
+                priority = 'medium';
+                priorityTxt = 'Medium';
+                setAttributes(option, {'selected': ''});
+                break;
+            case 3:
+                priorityTxt = 'high';
+                priority = 'High';
+                break;
+        }
+        setAttributes(option, {'value': priority});
+        option.textContent = priorityTxt;
+        select.append(option);
+    }
+
+    container.append(label, select);
+    form.append(container);
+}
+
 // display a "add todo to project" modal
 const displayAddTodoModal = (project) => {
     const modal = document.createElement('div');
@@ -47,8 +87,9 @@ const displayAddTodoModal = (project) => {
     // input fields
     _createFieldContainer(inputForm, 'text', 'Title', 'title', true);
     _createFieldContainer(inputForm, 'text', 'Description (Optional)', 'desc', false);
-    _createFieldContainer(inputForm, 'date', 'Due date', 'due_date', true);
-    _createFieldContainer(inputForm, 'text', 'Priority', 'priority', true);
+    _createFieldContainer(inputForm, 'date', 'Due date (Optional)', 'due_date', false);
+    _createDropDown(inputForm, 'Priority', 'priority', true);
+
 
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
