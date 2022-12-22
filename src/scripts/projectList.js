@@ -10,19 +10,19 @@ let todo3 = new todo("title3", "description", "2023-03-22", "high");
 let todo4 = new todo("title4", "description", "2023-03-22", "high");
 let todo5 = new todo("title5", "description", "2023-03-22", "high");
 let todo6 = new todo("title6", "description", "2023-03-22", "high");
-let project1 = new project("project1");
-// let project2 = new project("project2");
+// let project1 = new project("project1");
+let project2 = new project("project2");
 // let project3 = new project("project3");
 
-project1.addTodo(todo1);
-project1.addTodo(todo2);
-project1.addTodo(todo3);
-project1.addTodo(todo4);
-project1.addTodo(todo5);
-project1.addTodo(todo6);
+// project1.addTodo(todo1);
+// project1.addTodo(todo2);
+// project1.addTodo(todo3);
+// project1.addTodo(todo4);
+// project1.addTodo(todo5);
+// project1.addTodo(todo6);
 
-// project2.addTodo(todo1);
-// project2.addTodo(todo2);
+project2.addTodo(todo1);
+project2.addTodo(todo2);
 
 // // list of all project
 // projectList.push(project1);
@@ -41,16 +41,22 @@ if (localStorage.length != 0) {
     console.log(`Displaying ${projectNames}`);
     let length = projectNames.length;
     for (let i = 0; i < length; i++) {
-        const newProject = new project();
-        newProject.list = JSON.parse(localStorage.getItem(projectNames[i])).list;
-        newProject.name = JSON.parse(localStorage.getItem(projectNames[i])).name;
-        // newProject.prototype = project.prototype;
-        // Object.assign(newProject.protoype, project);
-        // newProject.prototype = Object.create(project.prototype);
-        projectList.push(newProject);
-        // console.log(project.prototype);
-        // console.log(newProject.constructor);
-        // console.log(project.prototype.constructor);
+        // giving a project from local storage a class
+        const projectFromStorage = new project();
+        projectFromStorage.list = JSON.parse(localStorage.getItem(projectNames[i])).list;
+        projectFromStorage.name = JSON.parse(localStorage.getItem(projectNames[i])).name;
+
+        // giving a todo from local storage a class
+        for (let item of projectFromStorage.list) {
+            const todoFromStorage = new todo();
+            for (let key of Object.keys(todoFromStorage)) {
+                todoFromStorage[key] = item[key];
+            }
+            let index = projectFromStorage.list.indexOf(item);
+            projectFromStorage.list[index] = todoFromStorage;
+        }
+        projectList.push(projectFromStorage);
+
     }
     console.log(projectList);
 }

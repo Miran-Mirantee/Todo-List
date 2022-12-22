@@ -15,6 +15,8 @@ const displayProject = (projectList, project) => {
     const _changeProjectName = () => {
         projectName.toggleAttribute('disabled');
         project.editName(projectName.value);
+
+        // change project name in storage
     };
 
     // delete project from a list
@@ -22,6 +24,8 @@ const displayProject = (projectList, project) => {
         container.remove();
         let index = projectList.indexOf(project);
         projectList.splice(index, 1);
+
+        // delete from storage
     };
 
     // create a list of todo in project
@@ -111,6 +115,8 @@ const displayProject = (projectList, project) => {
     const _deleteTodo = (todo) => {
         project.deleteTodo(todo);
         _refreshListofTodo();
+
+        // delete todo from project in storage
     };
 
     // add todo to the project
