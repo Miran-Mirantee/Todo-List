@@ -3,6 +3,7 @@ import todo from "./todo";
 import projectList from "./projectList";
 import displayProject from "./displayProject";
 import setAttributes from "./setAttrs";
+import { setProject } from "./storage";
 
 // create a field container use in modal
 const _createFieldContainer = (form, type, labelTxt, name, required) => {
@@ -133,6 +134,7 @@ const displayAddTodoModal = (project, btn) => {
                     document.getElementById('priority').value
                 )
             );
+            setProject(project);
             _enableButton(btn, modal)
         }
     });
@@ -191,7 +193,11 @@ const displayAddProjectModal = (btn) => {
         let projectNameIsValid = document.getElementById('project_name').checkValidity();
         if (projectNameIsValid) {
             let newProject = new project(document.getElementById('project_name').value);
-            projectList.push(newProject);
+
+            // change here
+            // projectList.push(newProject);
+            setProject(newProject);
+
             displayProject(projectList, newProject);
             _enableButton(btn, modal);
         }
