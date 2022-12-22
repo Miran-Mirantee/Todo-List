@@ -18,9 +18,12 @@ const setProject = (newProject) => {
 }
 
 const storeProjectNames = (newProject) => {
-    projectNames.push(newProject);
-    localStorage.setItem('projectNames', JSON.stringify(projectNames));
-    console.log(projectNames);
+    // check for duplicate
+    if (projectNames.indexOf(newProject) == -1) {
+        projectNames.push(newProject);
+        localStorage.setItem('projectNames', JSON.stringify(projectNames));
+        console.log(`All project names: ${projectNames}`);
+    }
 }
 
 export {
