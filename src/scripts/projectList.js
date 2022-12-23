@@ -41,6 +41,7 @@ if (localStorage.length != 0) {
     console.log(projectId);
     let length = projectId.length;
     for (let i = 0; i < length; i++) {
+        
         // giving a project from local storage a class
         const projectFromStorage = new project();
         for (let key of Object.keys(projectFromStorage)) {

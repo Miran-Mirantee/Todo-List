@@ -91,12 +91,16 @@ const displayProject = (project) => {
             editBtn.textContent = 'Edit';
             editBtn.addEventListener('click', () => {
                 _editTodo(project.list[i], title, desc, dueDate, priority, expandPanel, editBtn);
+                setProject(project);
             });
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('todo', 'delete-todo', 'btn');
             deleteBtn.textContent = 'Delete';
-            deleteBtn.addEventListener('click', () => _deleteTodo(project.list[i]));
+            deleteBtn.addEventListener('click', () => {
+                _deleteTodo(project.list[i]);
+                setProject(project);
+            });
     
             todoPanel.append(noDescPanel, expandPanel);
             btnPanel.append(expandBtn, editBtn, deleteBtn);
