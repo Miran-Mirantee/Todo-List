@@ -1,5 +1,5 @@
 import { displayAddTodoModal } from "./displayModal";
-import { setProject } from "./storage";
+import { setProject, removeProject } from "./storage";
 import setAttributes from "./setAttrs";
 
 // create a list of projects 
@@ -28,6 +28,7 @@ const displayProject = (projectList, project) => {
         projectList.splice(index, 1);
 
         // delete from storage
+        removeProject(project);
     };
 
     // create a list of todo in project
