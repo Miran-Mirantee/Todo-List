@@ -1,4 +1,5 @@
-import {displayAddTodoModal} from "./displayModal";
+import { displayAddTodoModal } from "./displayModal";
+import { setProject } from "./storage";
 import setAttributes from "./setAttrs";
 
 // create a list of projects 
@@ -17,6 +18,7 @@ const displayProject = (projectList, project) => {
         project.editName(projectName.value);
 
         // change project name in storage
+        setProject(project);
     };
 
     // delete project from a list

@@ -1,6 +1,7 @@
 class project{
-    constructor(name) {
+    constructor(name, timeCreated) {
         this.list = [];
+        this.timeCreated = timeCreated;
         this.name = name;
     }
 
