@@ -10,7 +10,7 @@ const _createProjectList = (() => {
 })();
 
 // display a project displaying a list of todo
-const displayProject = (projectList, project) => {
+const displayProject = (project) => {
 
     // change project's name
     const _changeProjectName = () => {
@@ -24,8 +24,6 @@ const displayProject = (projectList, project) => {
     // delete project from a list
     const _deleteProject = () => {
         container.remove();
-        let index = projectList.indexOf(project);
-        projectList.splice(index, 1);
 
         // delete from storage
         removeProject(project);
@@ -119,7 +117,7 @@ const displayProject = (projectList, project) => {
         project.deleteTodo(todo);
         _refreshListofTodo();
 
-        // delete todo from project in storage
+        // delete todo of project in storage
     };
 
     // add todo to the project
@@ -140,6 +138,8 @@ const displayProject = (projectList, project) => {
             todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
         }
         editBtn.classList.toggle('not-editable');
+
+        // edit todo of project in storage
     };
 
     // toggle isDone in todo

@@ -1,6 +1,5 @@
 import project from "./project";
 import todo from "./todo";
-import projectList from "./projectList";
 import displayProject from "./displayProject";
 import setAttributes from "./setAttrs";
 import { setProject } from "./storage";
@@ -195,10 +194,10 @@ const displayAddProjectModal = (btn) => {
             let newProject = new project(document.getElementById('project_name').value, (new Date()).toISOString());
 
             // change here
-            // projectList.push(newProject);
             setProject(newProject);
 
-            displayProject(projectList, newProject);
+            // display new project
+            displayProject(newProject);
             _enableButton(btn, modal);
         }
     });
