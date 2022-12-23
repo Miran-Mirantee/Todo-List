@@ -75,9 +75,42 @@ const displayProject = (project) => {
             dueDate.classList.add('todo', 'date');
             setAttributes(dueDate, {'type': 'date', 'name': 'due_date', 'value': project.list[i].dueDate, 'disabled': ''});
 
-            const priority = document.createElement('input');
+            const priority = document.createElement('select');
             priority.classList.add('todo', 'priority');
-            setAttributes(priority, {'type': 'text', 'name': 'priority', 'value': project.list[i].priority, 'disabled': ''});
+            setAttributes(priority, {'name': 'priority', 'disabled': ''});
+            // create priority options
+            for (let j = 1; j <= 3; j++) {
+                const option = document.createElement('option');
+                let priorityLvl;
+                let priorityTxt;
+
+                const _selectCorrectPriority = () => {
+                    if (project.list[i].priority === priorityLvl) {
+                        setAttributes(option, {'selected': ''});
+                    }
+                };
+
+                switch(j) {
+                    case 1:
+                        priorityLvl = 'low';
+                        priorityTxt = 'Low';
+                        _selectCorrectPriority();
+                        break;
+                    case 2:
+                        priorityLvl = 'medium';
+                        priorityTxt = 'Medium';
+                        _selectCorrectPriority();
+                        break;
+                    case 3:
+                        priorityLvl = 'high';
+                        priorityTxt = 'High';
+                        _selectCorrectPriority();
+                        break;
+                }
+                setAttributes(option, {'value': priorityLvl});
+                option.textContent = priorityTxt;
+                priority.append(option);
+            }
 
             noDescPanel.append(isDone, title, dueDate, priority);
             expandPanel.append(desc);
@@ -126,8 +159,6 @@ const displayProject = (project) => {
     const _deleteTodo = (todo) => {
         project.deleteTodo(todo);
         _refreshListofTodo();
-
-        // delete todo of project in storage
     };
 
     // add todo to the project
@@ -148,8 +179,6 @@ const displayProject = (project) => {
             todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
         }
         editBtn.classList.toggle('not-editable');
-
-        // edit todo of project in storage
     };
 
     // toggle isDone in todo
