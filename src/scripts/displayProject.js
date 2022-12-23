@@ -53,8 +53,14 @@ const displayProject = (project) => {
             // todo
             const isDone = document.createElement('input');
             isDone.classList.add('todo', 'isDone');
-            isDone.addEventListener('click', () => _toggleTodoIsDone(isDone, project.list[i]));
+            isDone.addEventListener('click', () => {
+                _toggleTodoIsDone(isDone, project.list[i]);
+                setProject(project);
+            });
             setAttributes(isDone, {'type': 'checkbox', 'name': 'is_done', 'value': project.list[i].isDone});
+            if (project.list[i].isDone) {
+                isDone.setAttribute('checked', '');
+            }
     
             const title = document.createElement('input');
             title.classList.add('todo', 'title');
