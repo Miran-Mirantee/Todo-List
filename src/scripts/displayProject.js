@@ -76,7 +76,7 @@ const displayProject = (project) => {
             setAttributes(dueDate, {'type': 'date', 'name': 'due_date', 'value': project.list[i].dueDate, 'disabled': ''});
 
             const priority = document.createElement('select');
-            priority.classList.add('todo', 'priority');
+            priority.classList.add('todo', 'priority', project.list[i].priority);
             setAttributes(priority, {'name': 'priority', 'disabled': ''});
             // create priority options
             for (let j = 1; j <= 3; j++) {
@@ -175,9 +175,15 @@ const displayProject = (project) => {
         desc.toggleAttribute('disabled');
         dueDate.toggleAttribute('disabled');
         priority.toggleAttribute('disabled');
+
         if (!editBtn.classList.contains('not-editable')) {
+            // remove old class
+            priority.classList.remove(todo.priority);
             todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
+            // add new class after editing
+            priority.classList.add(todo.priority);
         }
+        
         editBtn.classList.toggle('not-editable');
     };
 

@@ -175,4 +175,15 @@ textarea.todo:disabled{
     gap: 4px;
 }
 
+.todo.container:has(.low){
+    background-color: greenyellow;
+}
+
+.todo.container:has(.medium){
+    background-color: aqua;
+}
+
+.todo.container:has(.high){
+    background-color: orangered;
+}
 
