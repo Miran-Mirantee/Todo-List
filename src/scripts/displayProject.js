@@ -1,6 +1,6 @@
 import { displayAddTodoModal } from "./displayModal";
 import { setProject, removeProject } from "./storage";
-import { sub, parseISO, isBefore, isEqual, formatISO } from "date-fns";
+import { sub, parseISO, isBefore, isEqual, startOfDay } from "date-fns";
 import setAttributes from "./setAttrs";
 
 // create a list of projects 
@@ -77,10 +77,10 @@ const displayProject = (project) => {
             setAttributes(dueDate, {'type': 'date', 'name': 'due_date', 'value': project.list[i].dueDate, 'disabled': ''});
             // check deadline status
             if (project.list[i].dueDate != '') {
-                let parsedDueDate = parseISO(formatISO(parseISO(project.list[i].dueDate), {representation: 'date'}));
-                let today = parseISO(formatISO(new Date(), {representation: 'date'}));
+                let parsedDueDate = startOfDay(parseISO(project.list[i].dueDate));
+                let today = startOfDay(new Date());
                 let dueDateSubOneDay = sub(parsedDueDate, {days: 1})
-                console.log(parsedDueDate);
+
                 if (isEqual(parsedDueDate, today)) {
                     console.log('deadline is today');
                 }
