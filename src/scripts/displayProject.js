@@ -80,16 +80,21 @@ const displayProject = (project) => {
                 let parsedDueDate = startOfDay(parseISO(project.list[i].dueDate));
                 let today = startOfDay(new Date());
                 let dueDateSubOneDay = sub(parsedDueDate, {days: 1})
+                let alertnessClass = ' ';
 
                 if (isEqual(parsedDueDate, today)) {
                     console.log('deadline is today');
+                    alertnessClass = 'deadline';
                 }
                 else if (isEqual(dueDateSubOneDay, today)) {
                     console.log('one day before dateline');
+                    alertnessClass = 'alert';
                 }
                 else if (isBefore(parsedDueDate, today)) {
                     console.log('deadline is passed');
+                    alertnessClass = 'deadline-passed';
                 }
+                dueDate.classList.add(alertnessClass);
             }
 
             const priority = document.createElement('select');
