@@ -62,8 +62,8 @@ const _createPriorityDropDown = (form, labelTxt, name, required) => {
                 setAttributes(option, {'selected': ''});
                 break;
             case 3:
-                priorityTxt = 'high';
-                priority = 'High';
+                priority = 'high';
+                priorityTxt = 'High';
                 break;
         }
         setAttributes(option, {'value': priority});
