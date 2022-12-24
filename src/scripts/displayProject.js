@@ -75,26 +75,11 @@ const displayProject = (project) => {
             const dueDate = document.createElement('input');
             dueDate.classList.add('todo', 'date');
             setAttributes(dueDate, {'type': 'date', 'name': 'due_date', 'value': project.list[i].dueDate, 'disabled': ''});
+            
             // check deadline status
             if (project.list[i].dueDate != '') {
-                let parsedDueDate = startOfDay(parseISO(project.list[i].dueDate));
-                let today = startOfDay(new Date());
-                let dueDateSubOneDay = sub(parsedDueDate, {days: 1})
-                let alertnessClass = ' ';
-
-                if (isEqual(parsedDueDate, today)) {
-                    console.log('deadline is today');
-                    alertnessClass = 'deadline';
-                }
-                else if (isEqual(dueDateSubOneDay, today)) {
-                    console.log('one day before dateline');
-                    alertnessClass = 'alert';
-                }
-                else if (isBefore(parsedDueDate, today)) {
-                    console.log('deadline is passed');
-                    alertnessClass = 'deadline-passed';
-                }
-                dueDate.classList.add(alertnessClass);
+                let status = _checkDeadline(dueDate);
+                dueDate.classList.add(status);
             }
 
             const priority = document.createElement('select');
@@ -190,6 +175,23 @@ const displayProject = (project) => {
         createTodoBtn.addEventListener('click', () => _refreshListofTodo());
     };
 
+    // check deadline status and return string
+    const _checkDeadline = (dueDate) => {
+        let parsedDueDate = startOfDay(parseISO(dueDate.value));
+        let today = startOfDay(new Date());
+        let dueDateSubOneDay = sub(parsedDueDate, {days: 1})
+
+        if (isEqual(parsedDueDate, today)) {
+            return 'deadline';
+        }
+        else if (isEqual(dueDateSubOneDay, today)) {
+            return 'alert';
+        }
+        else if (isBefore(parsedDueDate, today)) {
+            return 'deadline-passed';
+        }
+    };
+
     // edit todo in the project
     const _editTodo = (todo, title, desc, dueDate, priority, expandPanel, editBtn) => {
         expandPanel.classList.remove('hidden');
@@ -197,13 +199,17 @@ const displayProject = (project) => {
         desc.toggleAttribute('disabled');
         dueDate.toggleAttribute('disabled');
         priority.toggleAttribute('disabled');
-
+        // remove old class
+        let status = _checkDeadline(dueDate);
+        dueDate.classList.remove(status);
+        priority.classList.remove(todo.priority);
+        
         if (!editBtn.classList.contains('not-editable')) {
-            // remove old class
-            priority.classList.remove(todo.priority);
             todo.editTodo(title.value, desc.value, dueDate.value, priority.value);
             // add new class after editing
+            status = _checkDeadline(dueDate);
             priority.classList.add(todo.priority);
+            dueDate.classList.add(status);
         }
         
         editBtn.classList.toggle('not-editable');
