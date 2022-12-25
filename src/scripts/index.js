@@ -1,7 +1,6 @@
-import { header, content } from "./ui";
+import "./ui";
 import displayProject from "./displayProject";
 import projectList from "./projectList";
-import "./addProject";
 import "../style/style.css";
 
 // displaying all the project from the localStorage

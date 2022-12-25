@@ -58,7 +58,6 @@ body{
 }
 
 .add-project.btn{
-    position: fixed;
     bottom: 24px;
     right: 24px;
 }

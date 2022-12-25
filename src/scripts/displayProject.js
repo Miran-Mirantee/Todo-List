@@ -6,8 +6,8 @@ import setAttributes from "./setAttrs";
 // create a list of projects 
 const _createProjectList = (() => {
     const projectList = document.createElement('div');
-    const contentContainer = document.querySelector('.content.container');
     projectList.classList.add('project', 'list');
+    const contentContainer = document.querySelector('.content.container');
     contentContainer.append(projectList);
 })();
 

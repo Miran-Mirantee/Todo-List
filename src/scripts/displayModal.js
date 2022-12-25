@@ -150,7 +150,7 @@ const displayAddTodoModal = (project, btn) => {
     topPanel.append(header, closeBtn);
     modalContent.append(topPanel, inputForm);
     modal.append(modalContent)
-    document.body.prepend(modal);
+    document.body.append(modal);
 };
 
 // display a "add project to a list of projects" modal
@@ -214,7 +214,7 @@ const displayAddProjectModal = (btn) => {
     topPanel.append(header, closeBtn);
     modalContent.append(topPanel, inputForm);
     modal.append(modalContent);
-    document.body.prepend(modal);
+    document.body.append(modal);
 };
 
 export {

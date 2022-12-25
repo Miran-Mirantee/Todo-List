@@ -1,3 +1,20 @@
+import setAttributes from "./setAttrs";
+import { displayAddProjectModal } from './displayModal';
+
+// create a button for adding new project to the list
+const _createAddProjectBtn = (sidebar) => {
+    const addBtn = document.createElement('button');
+    addBtn.classList.add('add-project', 'btn');
+    addBtn.textContent = 'Add Project';
+    addBtn.addEventListener('click', () => {
+        if (!addBtn.classList.contains('active')) {
+            addBtn.classList.toggle('active');
+            displayAddProjectModal(addBtn);
+        }
+    });
+    sidebar.prepend(addBtn);
+};
+
 const header = (() => {
     const container = document.createElement('div');
     container.classList.add('header', 'container');
@@ -19,15 +36,11 @@ const sidebar = (() => {
     const container = document.createElement('div');
     container.classList.add('sidebar', 'container');
 
+    _createAddProjectBtn(container);
+
     const temp1 = document.createElement('div');
     temp1.textContent = 'project number 1'
 
     container.append(temp1);
     content.append(container);
 })();
-
-export {
-    header,
-    content,
-    sidebar,
-};

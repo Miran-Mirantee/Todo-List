@@ -1,7 +1,7 @@
-import {displayAddProjectModal} from './displayModal';
+import { displayAddProjectModal } from './displayModal';
 
 // create a button for adding new project to the list
-const _createAddProjectBtn = (() => {
+const createAddProjectBtn = () => {
     const addBtn = document.createElement('button');
     addBtn.classList.add('add-project', 'btn');
     addBtn.textContent = 'Add Project';
@@ -11,5 +11,7 @@ const _createAddProjectBtn = (() => {
             displayAddProjectModal(addBtn);
         }
     });
-    document.body.prepend(addBtn);
-})();
+    // document.body.append(addBtn);
+};
+
+export default createAddProjectBtn;
