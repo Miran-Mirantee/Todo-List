@@ -1,5 +1,8 @@
 import setAttributes from "./setAttrs";
+import projectList from "./projectList";
 import { displayAddProjectModal } from './displayModal';
+
+let currentProject;
 
 // create a list of projects 
 const _createProjectList = (content) => {
@@ -43,12 +46,19 @@ const sidebar = (() => {
     const content = document.querySelector('.content.container');
     const container = document.createElement('div');
     container.classList.add('sidebar', 'container');
+    content.prepend(container);
+
+    const projectItemList = document.createElement('div');
+    projectItemList.classList.add('sidebar', 'project-item-list');
+    container.append(projectItemList);
 
     _createAddProjectBtn(container);
+    for (let i = 0; i < projectList.length; i++) {
+        const project = document.createElement('div');
+        project.classList.add('sidebar', 'project-item');
+        project.textContent = projectList[i].name;
+        projectItemList.append(project);
+    }
 
-    const temp1 = document.createElement('div');
-    temp1.textContent = 'project number 1'
 
-    container.append(temp1);
-    content.prepend(container);
 })();
