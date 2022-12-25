@@ -14,7 +14,20 @@ const content = (() => {
     document.body.append(container);
 })();
 
+const sidebar = (() => {
+    const content = document.querySelector('.content.container');
+    const container = document.createElement('div');
+    container.classList.add('sidebar', 'container');
+
+    const temp1 = document.createElement('div');
+    temp1.textContent = 'project number 1'
+
+    container.append(temp1);
+    content.append(container);
+})();
+
 export {
     header,
     content,
+    sidebar,
 };
