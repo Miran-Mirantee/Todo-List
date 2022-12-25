@@ -6,8 +6,9 @@ import setAttributes from "./setAttrs";
 // create a list of projects 
 const _createProjectList = (() => {
     const projectList = document.createElement('div');
+    const contentContainer = document.querySelector('.content.container');
     projectList.classList.add('project', 'list');
-    document.body.prepend(projectList);
+    contentContainer.append(projectList);
 })();
 
 // display a project displaying a list of todo

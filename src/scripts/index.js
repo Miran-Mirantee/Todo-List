@@ -1,3 +1,4 @@
+import { header, content } from "./ui";
 import displayProject from "./displayProject";
 import projectList from "./projectList";
 import "./addProject";
