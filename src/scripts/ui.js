@@ -1,8 +1,6 @@
-import setAttributes from "./setAttrs";
 import projectList from "./projectList";
+import { displayProject, unDisplayProject } from "./displayProject";
 import { displayAddProjectModal } from './displayModal';
-
-let currentProject;
 
 // create a list of projects 
 const _createProjectList = (content) => {
@@ -40,6 +38,10 @@ const content = (() => {
     container.classList.add('content', 'container');
     _createProjectList(container);
     document.body.append(container);
+
+    // display first (default) project
+    displayProject(projectList[0]);
+
 })();
 
 const sidebar = (() => {
@@ -57,6 +59,11 @@ const sidebar = (() => {
         const project = document.createElement('div');
         project.classList.add('sidebar', 'project-item');
         project.textContent = projectList[i].name;
+        // show selected project
+        project.addEventListener('click', () => {
+            unDisplayProject();
+            displayProject(projectList[i]);
+        });
         projectItemList.append(project);
     }
 

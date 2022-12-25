@@ -259,4 +259,12 @@ const displayProject = (project) => {
     projectListContainer.append(container);
 };
 
-export default displayProject;
+const unDisplayProject = () => {
+    const projectContainer = document.querySelector('.project.container');
+    projectContainer.remove();
+};
+
+export {
+    displayProject,
+    unDisplayProject,
+};
