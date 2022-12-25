@@ -1,6 +1,13 @@
 import setAttributes from "./setAttrs";
 import { displayAddProjectModal } from './displayModal';
 
+// create a list of projects 
+const _createProjectList = (content) => {
+    const projectList = document.createElement('div');
+    projectList.classList.add('project', 'list');
+    content.append(projectList);
+};
+
 // create a button for adding new project to the list
 const _createAddProjectBtn = (sidebar) => {
     const addBtn = document.createElement('button');
@@ -28,6 +35,7 @@ const header = (() => {
 const content = (() => {
     const container = document.createElement('div');
     container.classList.add('content', 'container');
+    _createProjectList(container);
     document.body.append(container);
 })();
 
@@ -42,5 +50,5 @@ const sidebar = (() => {
     temp1.textContent = 'project number 1'
 
     container.append(temp1);
-    content.append(container);
+    content.prepend(container);
 })();

@@ -3,14 +3,6 @@ import { setProject, removeProject } from "./storage";
 import { sub, parseISO, isBefore, isEqual, startOfDay } from "date-fns";
 import setAttributes from "./setAttrs";
 
-// create a list of projects 
-const _createProjectList = (() => {
-    const projectList = document.createElement('div');
-    projectList.classList.add('project', 'list');
-    const contentContainer = document.querySelector('.content.container');
-    contentContainer.append(projectList);
-})();
-
 // display a project displaying a list of todo
 const displayProject = (project) => {
 
