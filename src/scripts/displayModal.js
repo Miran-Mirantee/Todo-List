@@ -1,6 +1,5 @@
 import project from "./project";
 import todo from "./todo";
-import displayProject from "./displayProject";
 import setAttributes from "./setAttrs";
 import { setProject } from "./storage";
 
@@ -197,13 +196,12 @@ const displayAddProjectModal = (btn) => {
             setProject(newProject);
 
             // display new project
-            displayProject(newProject);
             _enableButton(btn, modal);
         }
     });
 
     // cancel
-    const cancelBtn = document.createElement('button')
+    const cancelBtn = document.createElement('button');
     setAttributes(cancelBtn, {'type': 'reset'});
     cancelBtn.classList.add('modal', 'btn', 'cancel');
     cancelBtn.textContent = 'Cancel';

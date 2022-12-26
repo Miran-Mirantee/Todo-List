@@ -1,3 +1,7 @@
+import todo from "./todo";
+import project from "./project";
+
+const projectList = [];
 const projectId = [];
 
 // initialize
@@ -27,6 +31,38 @@ const _removeId = (id) => {
     localStorage.setItem('projectId', JSON.stringify(projectId));
 };
 
+// get data from localStorage
+const _getStorage = () => {
+    console.log(localStorage.length);
+    if (localStorage.length != 0) {
+        const projectId = JSON.parse(localStorage.getItem('projectId'));
+        console.log(projectId);
+        let length = projectId.length;
+        for (let i = 0; i < length; i++) {
+            
+            // giving a project from local storage a class
+            const projectFromStorage = new project();
+            for (let key of Object.keys(projectFromStorage)) {
+                const projectData = JSON.parse(localStorage.getItem(projectId[i]));
+                projectFromStorage[key] = projectData[key];
+            }
+    
+            // giving a todo from local storage a class
+            for (let item of projectFromStorage.list) {
+                const todoFromStorage = new todo();
+                for (let key of Object.keys(todoFromStorage)) {
+                    todoFromStorage[key] = item[key];
+                }
+                let index = projectFromStorage.list.indexOf(item);
+                projectFromStorage.list[index] = todoFromStorage;
+            }
+            projectList.push(projectFromStorage);
+    
+        }
+        console.log(projectList);
+    }
+};
+
 // add/edit project in the localStorage
 const setProject = (newProject) => {
     localStorage.setItem(newProject.timeCreated, JSON.stringify(newProject));
@@ -39,8 +75,11 @@ const removeProject = (oldProject) => {
     _removeId(oldProject.timeCreated);
 };
 
+_getStorage();
+
 export {
     setProject,
     removeProject,
+    projectList,
 };
 

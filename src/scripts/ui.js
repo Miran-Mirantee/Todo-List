@@ -1,12 +1,12 @@
-import projectList from "./projectList";
+import { projectList } from "./storage";
 import { displayProject, unDisplayProject } from "./displayProject";
 import { displayAddProjectModal } from './displayModal';
 
 // create a list of projects 
 const _createProjectList = (content) => {
-    const projectList = document.createElement('div');
-    projectList.classList.add('project', 'list');
-    content.append(projectList);
+    const projectListContainer = document.createElement('div');
+    projectListContainer.classList.add('project', 'list');
+    content.append(projectListContainer);
 };
 
 // create a button for adding new project to the list
@@ -67,5 +67,12 @@ const sidebar = (() => {
         projectItemList.append(project);
     }
 
+
+    // let originalSetItem = localStorage.setItem; 
+    // localStorage.setItem = function(){
+    //     console.log('its working');
+    //     originalSetItem.apply(this, arguments);
+    // }
+    
 
 })();
