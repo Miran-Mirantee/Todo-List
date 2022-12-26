@@ -1,5 +1,6 @@
 import { displayAddTodoModal } from "./displayModal";
 import { setProject, removeProject } from "./storage";
+import { displayProjectListSidebar } from "./ui";
 import { sub, parseISO, isBefore, isEqual, startOfDay } from "date-fns";
 import setAttributes from "./setAttrs";
 
@@ -21,6 +22,10 @@ const displayProject = (project) => {
 
         // delete from storage
         removeProject(project);
+        
+        // re-display a list of project in sidebar
+        const projectItemList = document.querySelector('.sidebar.project-item-list');
+        displayProjectListSidebar(projectItemList);
     };
 
     // create a list of todo in project

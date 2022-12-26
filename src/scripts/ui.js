@@ -23,6 +23,28 @@ const _createAddProjectBtn = (sidebar) => {
     sidebar.prepend(addBtn);
 };
 
+// remove all the children in a list of project in sidebar
+const _refreshProjectListSidebar = () => {
+    const projectItemList = document.querySelector('.sidebar.project-item-list');
+    projectItemList.innerHTML = '';
+};
+
+// display a list of project in sidebar
+const displayProjectListSidebar = (container) => {
+    _refreshProjectListSidebar();
+    for (let i = 0; i < projectList.length; i++) {
+        const project = document.createElement('div');
+        project.classList.add('sidebar', 'project-item');
+        project.textContent = projectList[i].name;
+        // show selected project
+        project.addEventListener('click', () => {
+            unDisplayProject();
+            displayProject(projectList[i]);
+        });
+        container.append(project);
+    }
+};
+
 const header = (() => {
     const container = document.createElement('div');
     container.classList.add('header', 'container');
@@ -55,24 +77,9 @@ const sidebar = (() => {
     container.append(projectItemList);
 
     _createAddProjectBtn(container);
-    for (let i = 0; i < projectList.length; i++) {
-        const project = document.createElement('div');
-        project.classList.add('sidebar', 'project-item');
-        project.textContent = projectList[i].name;
-        // show selected project
-        project.addEventListener('click', () => {
-            unDisplayProject();
-            displayProject(projectList[i]);
-        });
-        projectItemList.append(project);
-    }
-
-
-    // let originalSetItem = localStorage.setItem; 
-    // localStorage.setItem = function(){
-    //     console.log('its working');
-    //     originalSetItem.apply(this, arguments);
-    // }
-    
-
+    displayProjectListSidebar(projectItemList);
 })();
+
+export {
+    displayProjectListSidebar,
+};

@@ -2,6 +2,7 @@ import project from "./project";
 import todo from "./todo";
 import setAttributes from "./setAttrs";
 import { setProject } from "./storage";
+import { displayProjectListSidebar } from "./ui";
 
 // create a field container use in modal
 const _createFieldContainer = (form, type, labelTxt, name, required) => {
@@ -197,6 +198,10 @@ const displayAddProjectModal = (btn) => {
 
             // display new project
             _enableButton(btn, modal);
+
+            // re-display a list of project in sidebar
+            const projectItemList = document.querySelector('.sidebar.project-item-list');
+            displayProjectListSidebar(projectItemList);
         }
     });
 
