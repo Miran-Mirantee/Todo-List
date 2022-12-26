@@ -6,6 +6,12 @@ import setAttributes from "./setAttrs";
 
 // display a project displaying a list of todo
 const displayProject = (project) => {
+    
+    // re-display a list of project in sidebar
+    const _refreshSidebar = () => {
+        const projectItemList = document.querySelector('.sidebar.project-item-list');
+        displayProjectListSidebar(projectItemList);
+    }
 
     // change project's name
     const _changeProjectName = () => {
@@ -14,6 +20,9 @@ const displayProject = (project) => {
 
         // change project name in storage
         setProject(project);
+
+        // re-display a list of project in sidebar
+        _refreshSidebar();
     };
 
     // delete project from a list
@@ -24,8 +33,7 @@ const displayProject = (project) => {
         removeProject(project);
         
         // re-display a list of project in sidebar
-        const projectItemList = document.querySelector('.sidebar.project-item-list');
-        displayProjectListSidebar(projectItemList);
+        _refreshSidebar();
     };
 
     // create a list of todo in project
