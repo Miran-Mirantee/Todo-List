@@ -4,17 +4,6 @@ import project from "./project";
 const projectList = [];
 const projectId = [];
 
-// initialize
-if (localStorage.length == 0) {
-    localStorage.setItem('projectId', JSON.stringify(projectId));
-}
-else {
-    const idData = JSON.parse(localStorage.getItem('projectId'));
-    for (let id of idData) {
-        projectId.push(id);
-    }
-}
-
 // store project id into the localStorage
 const _storeId = (id) => {
     // check for duplicate
@@ -77,6 +66,22 @@ const removeProject = (oldProject) => {
     _removeId(oldProject.timeCreated);
     _getStorage();
 };
+
+// initialize
+if (localStorage.length == 0) {
+    localStorage.setItem('projectId', JSON.stringify(projectId));
+}
+else {
+    const idData = JSON.parse(localStorage.getItem('projectId'));
+    for (let id of idData) {
+        projectId.push(id);
+    }
+}
+// always create default project if no project is present in the list
+if (projectId.length == 0) {
+    const defaultProject = new project('Default');
+    setProject(defaultProject);
+}
 
 _getStorage();
 

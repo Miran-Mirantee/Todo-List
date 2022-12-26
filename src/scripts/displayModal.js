@@ -191,7 +191,7 @@ const displayAddProjectModal = (btn) => {
         // check validation
         let projectNameIsValid = document.getElementById('project_name').checkValidity();
         if (projectNameIsValid) {
-            let newProject = new project(document.getElementById('project_name').value, (new Date()).toISOString());
+            let newProject = new project(document.getElementById('project_name').value);
 
             // change here
             setProject(newProject);

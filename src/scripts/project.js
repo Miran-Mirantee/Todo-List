@@ -1,7 +1,7 @@
 class project{
-    constructor(name, timeCreated) {
+    constructor(name) {
         this.list = [];
-        this.timeCreated = timeCreated;
+        this.timeCreated = (new Date()).toISOString();
         this.name = name;
     }
 

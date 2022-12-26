@@ -61,9 +61,9 @@ const content = (() => {
     _createProjectArea(container);
     document.body.append(container);
 
-    // display first (default) project
-    displayProject(projectList[0]);
-
+    // display first (default) project if it exists
+    if (projectList[0])
+        displayProject(projectList[0]);
 })();
 
 const sidebar = (() => {
