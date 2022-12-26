@@ -81,11 +81,10 @@ body{
     right: 24px;
 }
 
-.project.list{
+.project.area{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     padding: 16px;
     width: 100%;
 

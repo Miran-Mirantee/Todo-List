@@ -3,9 +3,9 @@ import { displayProject, unDisplayProject } from "./displayProject";
 import { displayAddProjectModal } from './displayModal';
 
 // create a list of projects 
-const _createProjectList = (content) => {
+const _createProjectArea = (content) => {
     const projectListContainer = document.createElement('div');
-    projectListContainer.classList.add('project', 'list');
+    projectListContainer.classList.add('project', 'area');
     content.append(projectListContainer);
 };
 
@@ -58,7 +58,7 @@ const header = (() => {
 const content = (() => {
     const container = document.createElement('div');
     container.classList.add('content', 'container');
-    _createProjectList(container);
+    _createProjectArea(container);
     document.body.append(container);
 
     // display first (default) project

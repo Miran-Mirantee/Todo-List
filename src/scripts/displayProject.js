@@ -260,13 +260,14 @@ const displayProject = (project) => {
 
     topPanel.append(projectName, changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
 
-    const projectListContainer = document.querySelector('.project.list');
-    projectListContainer.append(container);
+    const projectArea = document.querySelector('.project.area');
+    projectArea.append(container);
 };
 
 const unDisplayProject = () => {
     const projectContainer = document.querySelector('.project.container');
-    projectContainer.remove();
+    if (projectContainer)
+        projectContainer.remove();
 };
 
 export {
