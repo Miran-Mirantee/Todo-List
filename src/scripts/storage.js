@@ -33,6 +33,7 @@ const _removeId = (id) => {
 
 // get data from localStorage
 const _getStorage = () => {
+    projectList.length = 0;
     console.log(localStorage.length);
     if (localStorage.length != 0) {
         const projectId = JSON.parse(localStorage.getItem('projectId'));
@@ -67,6 +68,7 @@ const _getStorage = () => {
 const setProject = (newProject) => {
     localStorage.setItem(newProject.timeCreated, JSON.stringify(newProject));
     _storeId(newProject.timeCreated);
+    _getStorage();
 };
 
 // delete project from the localStorage
