@@ -75,6 +75,7 @@ const setProject = (newProject) => {
 const removeProject = (oldProject) => {
     localStorage.removeItem(oldProject.timeCreated);
     _removeId(oldProject.timeCreated);
+    _getStorage();
 };
 
 _getStorage();
