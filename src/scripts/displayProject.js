@@ -243,6 +243,10 @@ const displayProject = (project) => {
     const list = document.createElement('div');
     _createListofTodo();
 
+    // panel for storing buttons
+    const btnPanel = document.createElement('div');
+    btnPanel.classList.add('project', 'btn-panel');
+
     // add todo to project
     const addTodoBtn = document.createElement('button');
     addTodoBtn.classList.add('add-todo', 'btn', 'project');
@@ -266,7 +270,8 @@ const displayProject = (project) => {
     deleteProjectBtn.textContent = 'Delete project';
     deleteProjectBtn.addEventListener('click', () => _deleteProject());
 
-    topPanel.append(projectName, changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
+    btnPanel.append(changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
+    topPanel.append(projectName, btnPanel);
 
     const projectArea = document.querySelector('.project.area');
     projectArea.append(container);
