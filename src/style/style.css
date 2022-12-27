@@ -13,13 +13,13 @@ body{
 
 .header.container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: white;
     padding: 16px;
 }
 
 .header.text {
-    font-size: 24px;
+    font-size: 48px;
     font-weight: bold;
 }
 
@@ -31,24 +31,34 @@ body{
 .sidebar.container{
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: aquamarine;
     padding: 16px;
+    width: 300px;
+}
+
+.sidebar.top-panel{
+    align-self: normal;
+}
+
+.sidebar.text{
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .sidebar.project-item-list{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 24px;
+    margin: 16px 0;
     padding: 4px;
     gap: 16px;
-    width: 80%;
-    background-color: lightcoral;
 }
 
 .sidebar.project-item{
     font-weight: bold;
+    background-color: coral;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 24px;
 }
 
 .sidebar.project-item:hover{
@@ -84,18 +94,16 @@ body{
 .project.area{
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 16px;
-    width: 100%;
-
-    /* temp */
-    /* height: 100vh; */
+    flex-grow: 1;
     gap: 32px;
 }
 
 .project.container{
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
+    width: 800px;
     gap: 8px;
     padding: 8px;
     background-color: rgb(255, 175, 175);

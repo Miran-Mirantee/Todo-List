@@ -20,7 +20,7 @@ const _createAddProjectBtn = (sidebar) => {
             displayAddProjectModal(addBtn);
         }
     });
-    sidebar.prepend(addBtn);
+    sidebar.append(addBtn);
 };
 
 // remove all the children in a list of project in sidebar
@@ -45,6 +45,7 @@ const displayProjectListSidebar = (container) => {
     }
 };
 
+// create header of website
 const header = (() => {
     const container = document.createElement('div');
     container.classList.add('header', 'container');
@@ -55,6 +56,7 @@ const header = (() => {
     document.body.append(container);
 })();
 
+// create content of website
 const content = (() => {
     const container = document.createElement('div');
     container.classList.add('content', 'container');
@@ -66,17 +68,26 @@ const content = (() => {
         displayProject(projectList[0]);
 })();
 
+// create sidebar of website
 const sidebar = (() => {
     const content = document.querySelector('.content.container');
     const container = document.createElement('div');
     container.classList.add('sidebar', 'container');
     content.prepend(container);
 
+    const topPanel = document.createElement('div');
+    topPanel.classList.add('sidebar', 'top-panel');
+
+    const topPanelTxt = document.createElement('div');
+    topPanelTxt.classList.add('sidebar', 'text');
+    topPanelTxt.textContent = 'Projects';
+    topPanel.append(topPanelTxt);
+    
     const projectItemList = document.createElement('div');
     projectItemList.classList.add('sidebar', 'project-item-list');
-    container.append(projectItemList);
+    container.append(topPanel, projectItemList);
 
-    _createAddProjectBtn(container);
+    _createAddProjectBtn(topPanel);
     displayProjectListSidebar(projectItemList);
 })();
 
