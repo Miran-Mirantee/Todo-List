@@ -56,7 +56,8 @@ body{
 .sidebar.text{
     font-size: 32px;
     font-weight: bold;
-    color: #aa2b20;
+    color: #F0C987;
+    text-shadow: 2px 2px 2px #386955;
 }
 
 .sidebar.project-item-list{
@@ -81,13 +82,15 @@ body{
 
 .sidebar.project-item:hover{
     cursor: pointer;
-    color: gold;
-    background-color: #8B1E3F;
+    color: #ffd51a;
+    text-shadow: 2px 2px 2px #386955;
+    background-color: #89BD9E;
 }
 
 .top-panel{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .project.top-panel{
@@ -106,8 +109,28 @@ body{
 }
 
 .add-project.btn{
-    bottom: 24px;
-    right: 24px;
+    border: none;
+    height: 42px;
+    width: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1cff41;
+    text-shadow: 1px 1px 1px #386955;
+    background-color: transparent;
+    border-radius: 16px;
+}
+
+.add-project.btn:hover{
+    cursor: pointer;
+    background-color: #89BD9E;
+}
+
+.add-project.btn:active{
+    cursor: pointer;
+    color: #17c734;
+    text-shadow: none;
+    background-color: transparent;
 }
 
 .project.area{
