@@ -65,13 +65,14 @@ body{
     flex-direction: column;
     margin: 8px 0;
     padding: 4px;
-    gap: 4px;
+    gap: 8px;
 }
 
 .sidebar.project-item{
     font-weight: bold;
     color: #dcfcce;
     /* text-align: center; */
+    border-radius: 8px;
     padding: 8px 14px;
     font-size: 24px;
 }
@@ -90,6 +91,19 @@ body{
 }
 
 .sidebar.project-item.selected{
+    color: white;
+    text-shadow: 2px 2px 2px #8b1f15;
+    background-color: #DB4C40;
+}
+
+.sidebar.project-item.selected:hover{
+    color: #ffd51a;
+    background-color: #f55647;
+}
+
+.sidebar.project-item.selected:active{
+    color: #dbb819;
+    text-shadow: none;
     background-color: #DB4C40;
 }
 
