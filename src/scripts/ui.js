@@ -30,15 +30,30 @@ const _refreshProjectListSidebar = () => {
 
 // display a list of project in sidebar
 const displayProjectListSidebar = (container) => {
+    const currentProjects = document.querySelectorAll('.sidebar.project-item');
+    let selectedIndex = 0;
+    // find index of current selected project
+    for (let i = 0; i < currentProjects.length; i++) {
+        if (currentProjects[i].classList.contains('selected'))
+            selectedIndex = i;
+    }
     _refreshProjectListSidebar();
     for (let i = 0; i < projectList.length; i++) {
         const project = document.createElement('div');
         project.classList.add('sidebar', 'project-item');
         project.textContent = projectList[i].name;        
 
-        // highlight selected first project
-        if (i == 0) {
-            project.classList.add('selected');
+        // if changing project's name or added new project
+        if (projectList.length >= currentProjects.length) {
+            // highlight (previously) selected project
+            if (i == selectedIndex) 
+                project.classList.add('selected');
+        }
+        // if deleting current project
+        else {
+            // highlight the first project
+            if (i == 0)
+                project.classList.add('selected');
         }
         
         // show selected project
