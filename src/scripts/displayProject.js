@@ -254,7 +254,11 @@ const displayProject = (project) => {
     // add todo to project
     const addTodoBtn = document.createElement('button');
     addTodoBtn.classList.add('add-todo', 'btn', 'project');
-    addTodoBtn.textContent = "Add todo";
+    const addTodoIcon = document.createElement('i');
+    addTodoIcon.classList.add('fa-solid', 'fa-list-check');
+    const addTodoTxt = document.createElement('div');
+    addTodoTxt.textContent = 'Add task';
+    addTodoBtn.append(addTodoIcon, addTodoTxt);
     addTodoBtn.addEventListener('click', () => {
         if (!addTodoBtn.classList.contains('active')) {
             addTodoBtn.classList.add('active');
@@ -264,17 +268,15 @@ const displayProject = (project) => {
 
     // change project's name
     const changeProjectNameBtn = document.createElement('button');
-    changeProjectNameBtn.classList.add('change-name-project', 'btn', 'project');
-    changeProjectNameBtn.textContent = 'Change name';
+    changeProjectNameBtn.classList.add('change-name-project', 'btn', 'project', 'fa-solid', 'fa-pen-to-square');
     changeProjectNameBtn.addEventListener('click', () => _changeProjectName());
 
     // delete project from the list
     const deleteProjectBtn = document.createElement('button');
-    deleteProjectBtn.classList.add('delete-project', 'btn', 'project');
-    deleteProjectBtn.textContent = 'Delete project';
+    deleteProjectBtn.classList.add('delete-project', 'btn', 'project', 'fa-solid', 'fa-trash');
     deleteProjectBtn.addEventListener('click', () => _deleteProject());
 
-    btnPanel.append(changeProjectNameBtn, addTodoBtn, deleteProjectBtn);
+    btnPanel.append(addTodoBtn, changeProjectNameBtn, deleteProjectBtn);
     topPanel.append(projectName, btnPanel);
 
     const projectArea = document.querySelector('.project.area');

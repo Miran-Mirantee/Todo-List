@@ -43,7 +43,7 @@ body{
     padding: 16px;
     width: 300px;
     box-shadow: 
-        0px 3px 10px 0 #386955 inset
+        0px 5px 2px 0 #386955 inset
     ;
 }
 
@@ -113,10 +113,6 @@ body{
     align-items: center;
 }
 
-.project.top-panel{
-    gap: 8px;
-}
-
 .bottom-panel{
     display: flex;
     gap: 4px;
@@ -125,11 +121,42 @@ body{
 
 .btn-panel{
     display: flex;
+    align-items: center;
     gap: 8px;
 }
 
-.add-project.btn{
+.top-panel > .btn-panel > .btn{
+    box-shadow: 2px 2px 0px 0px #911d13;
+}
+
+.top-panel > .btn-panel > .btn:active{
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.btn{
     border: none;
+    background-color: #ffd51a;
+    padding: 8px;
+    border-radius: 6px;
+    color: #3C153B;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #b89600;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #ffe260;
+}
+
+.btn:active{
+    background-color: #ffd51a;
+    color: #1b051b;
+    text-shadow: none;
+}
+
+.add-project.btn{
     height: 42px;
     width: 42px;
     display: flex;
@@ -139,15 +166,14 @@ body{
     text-shadow: 1px 1px 1px #386955;
     background-color: transparent;
     border-radius: 16px;
+    font-size: 32px; 
 }
 
 .add-project.btn:hover{
-    cursor: pointer;
     background-color: #89BD9E;
 }
 
 .add-project.btn:active{
-    cursor: pointer;
     color: #17c734;
     text-shadow: none;
     background-color: transparent;
@@ -158,8 +184,20 @@ body{
     justify-content: center;
     flex-grow: 1;
     box-shadow: 
-        0 0 15px 5px #be7303 inset
+        0 5px 2px 0px #be7303 inset
     ;
+}
+
+.add-todo.btn > i,
+.delete-project.btn,
+.change-name-project.btn{
+    font-size: 24px;
+}
+
+.add-todo.btn{
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .project.container{
@@ -167,22 +205,36 @@ body{
     flex-direction: column;
     align-self: flex-start;
     width: 1100px;
+    margin: 48px 0;
+    background-color: #89BD9E;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+        5px 5px 3px 0 #be7303
+    ;
+}
+
+.project.top-panel{
     gap: 8px;
-    margin: 32px 0;
-    padding: 8px;
-    background-color: rgb(255, 175, 175);
+    padding: 8px 16px;
+    background-color: #DB4C40;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 
+        0px 0px 6px 2px #386955
+    ;
 }
 
 .project.name{
     font-size: 36px;
+    font-weight: bold;
     width: 700px;
     border: none;
     outline: none;
 }
 
-/* temp */
 .project.name:disabled{
-    color: black;
+    color: white;
+    text-shadow: 2px 2px 2px #8b1f15;
     background-color: transparent;
 }
 
@@ -190,6 +242,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 18px 12px;
 }
 
 .todo.container{

@@ -12,7 +12,7 @@ const _createProjectArea = (content) => {
 // create a button for adding new project to the list
 const _createAddProjectBtn = (sidebar) => {
     const addBtn = document.createElement('button');
-    addBtn.classList.add('add-project', 'btn', 'fa-solid', 'fa-plus', 'fa-2xl');
+    addBtn.classList.add('add-project', 'btn', 'fa-solid', 'fa-plus');
     addBtn.addEventListener('click', () => {
         if (!addBtn.classList.contains('active')) {
             addBtn.classList.toggle('active');
