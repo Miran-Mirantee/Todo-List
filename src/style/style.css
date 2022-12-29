@@ -76,15 +76,21 @@ body{
     font-size: 24px;
 }
 
-.sidebar.project-item.selected{
-    background-color: #DB4C40;
-}
-
 .sidebar.project-item:hover{
     cursor: pointer;
     color: #ffd51a;
     text-shadow: 2px 2px 2px #386955;
     background-color: #89BD9E;
+}
+
+.sidebar.project-item:active{
+    background-color: transparent;
+    color: #dbb819;
+    text-shadow: none;
+}
+
+.sidebar.project-item.selected{
+    background-color: #DB4C40;
 }
 
 .top-panel{

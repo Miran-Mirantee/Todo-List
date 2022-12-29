@@ -35,10 +35,18 @@ const displayProjectListSidebar = (container) => {
         const project = document.createElement('div');
         project.classList.add('sidebar', 'project-item');
         project.textContent = projectList[i].name;
+        // highlight selected first project
+        if (i == 0) {
+            project.classList.add('selected');
+        }
+
         // show selected project
         project.addEventListener('click', () => {
             unDisplayProject();
             displayProject(projectList[i]);
+            const selectedProject = document.querySelector('.sidebar.project-item.selected');
+            selectedProject.classList.remove('selected');
+            project.classList.add('selected');
         });
         container.append(project);
     }
