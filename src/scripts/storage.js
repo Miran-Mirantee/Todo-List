@@ -23,10 +23,8 @@ const _removeId = (id) => {
 // get data from localStorage
 const _getStorage = () => {
     projectList.length = 0;
-    console.log(localStorage.length);
     if (localStorage.length != 0) {
         const projectId = JSON.parse(localStorage.getItem('projectId'));
-        console.log(projectId);
         let length = projectId.length;
         for (let i = 0; i < length; i++) {
             
@@ -49,7 +47,6 @@ const _getStorage = () => {
             projectList.push(projectFromStorage);
     
         }
-        console.log(projectList);
     }
 };
 
