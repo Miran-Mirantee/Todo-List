@@ -34,12 +34,13 @@ const displayProjectListSidebar = (container) => {
     for (let i = 0; i < projectList.length; i++) {
         const project = document.createElement('div');
         project.classList.add('sidebar', 'project-item');
-        project.textContent = projectList[i].name;
+        project.textContent = projectList[i].name;        
+
         // highlight selected first project
         if (i == 0) {
             project.classList.add('selected');
         }
-
+        
         // show selected project
         project.addEventListener('click', () => {
             unDisplayProject();

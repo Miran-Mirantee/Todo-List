@@ -1,5 +1,5 @@
 import { displayAddTodoModal } from "./displayModal";
-import { setProject, removeProject } from "./storage";
+import { setProject, removeProject, projectList } from "./storage";
 import { displayProjectListSidebar } from "./ui";
 import { sub, parseISO, isBefore, isEqual, startOfDay } from "date-fns";
 import setAttributes from "./setAttrs";
@@ -34,6 +34,10 @@ const displayProject = (project) => {
         
         // re-display a list of project in sidebar
         _refreshSidebar();
+
+        // display first project in the list after deleting, if only it exists
+        if (projectList[0])
+            displayProject(projectList[0]);
     };
 
     // create a list of todo in project

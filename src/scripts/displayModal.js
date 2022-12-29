@@ -1,7 +1,8 @@
 import project from "./project";
 import todo from "./todo";
 import setAttributes from "./setAttrs";
-import { setProject } from "./storage";
+import { displayProject } from "./displayProject";
+import { projectList, setProject } from "./storage";
 import { displayProjectListSidebar } from "./ui";
 
 // create a field container use in modal
@@ -202,6 +203,10 @@ const displayAddProjectModal = (btn) => {
             // re-display a list of project in sidebar
             const projectItemList = document.querySelector('.sidebar.project-item-list');
             displayProjectListSidebar(projectItemList);
+
+            // Display project after creating project immediately, if only it's the first project in the list
+            if (projectList.length == 1) 
+                displayProject(projectList[0]);
         }
     });
 
