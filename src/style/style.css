@@ -204,15 +204,23 @@ body{
     gap: 4px;
 }
 
+.modal.close.btn,
 .delete-todo.btn{
     font-size: 28px;
     color: red;
 }
 
+.modal.close.btn,
 .edit-todo.btn,
 .delete-todo.btn{
+    padding: 0;
     height: 35px;
     width: 35px;
+}
+
+.modal.close.btn:hover,
+.modal.close.btn:focus{
+    cursor: pointer;    
 }
 
 .project.container{
@@ -371,40 +379,79 @@ textarea.todo:disabled{
     width: 100%;
     height: 100%;
     /* overflow: auto; enable scroll if needed, is this thing even working? */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 60%);
 }
 
 .modal-content{
     display: flex;
     flex-direction: column;
-    background-color: white;
-    gap: 8px;
+    background-color: #6ba181;
     margin: 35vh auto;
-    /* width: 250px;
-    height: 400px; */
-    padding: 8px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 40%);
 }
 
-.modal.close.btn{
-    color: black;
-    float: right;
+.modal.top-panel{
+    background-color: #DB4C40;
+    border-radius: 12px 12px 0 0;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 40%);
+    box-shadow: 0px 0px 6px 2px #386955;
+    padding: 12px;
+    gap: 16px;
 }
 
-.modal.close.btn:hover,
-.modal.close.btn:focus{
-    cursor: pointer;    
+.modal.header{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .modal.input-form {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    padding: 12px;
+    gap: 12px;
+}
+
+.modal.input-container,
+.modal.input-container-row{
+    display: flex;
 }
 
 .modal.input-container{
-    display: flex;
     flex-direction: column;
     gap: 4px;
+}
+
+.modal.input-container-row{
+    gap: 12px;
+}
+
+.modal.input-container > label{
+    color: #dcfcce;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.modal.input-container > input,
+.modal.input-container > textarea,
+.modal.input-container > select{
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 20px;
+    background-color: #ffdda2;
+}
+
+.modal.input-container > input[type="text"],
+.modal.input-container > textarea{
+    width: 400px;
+}
+
+.modal.input-container:has(select), 
+.modal.input-container > select{
+    flex-grow: 1;
 }
 
 .todo.container:has(.low){

@@ -98,20 +98,23 @@ const displayAddTodoModal = (project, btn) => {
     header.textContent = 'Add new todo'
 
     const closeBtn = document.createElement('span');
-    closeBtn.classList.add('modal', 'close', 'btn');
-    closeBtn.textContent = 'X';
+    closeBtn.classList.add('modal', 'close', 'btn', 'fa-solid', 'fa-xmark');
     closeBtn.addEventListener('click', () => _enableButton(btn, modal));
 
     const inputForm = document.createElement('form');
     setAttributes(inputForm, {'action': 'javascript:;', 'method': 'post'});
     inputForm.classList.add('modal', 'input-form');
 
+    const inputContainerRow = document.createElement('div');
+    inputContainerRow.classList.add('modal', 'input-container-row');
+
     // input fields
     _createFieldContainer(inputForm, 'text', 'Title', 'title', true);
     _createFieldContainer(inputForm, 'textarea', 'Description (Optional)', 'desc', false);
-    _createFieldContainer(inputForm, 'date', 'Due date (Optional)', 'due_date', false);
-    _createPriorityDropDown(inputForm, 'Priority', 'priority', true);
-
+    _createFieldContainer(inputContainerRow, 'date', 'Due date (Optional)', 'due_date', false);
+    _createPriorityDropDown(inputContainerRow, 'Priority', 'priority', true);
+    inputForm.append(inputContainerRow);
+    
     const bottomPanel = document.createElement('div');
     bottomPanel.classList.add('modal', 'bottom-panel');
 
@@ -170,8 +173,7 @@ const displayAddProjectModal = (btn) => {
     header.textContent = 'Add new project'
 
     const closeBtn = document.createElement('span');
-    closeBtn.classList.add('modal', 'close', 'btn');
-    closeBtn.textContent = 'X';
+    closeBtn.classList.add('modal', 'close', 'btn', 'fa-solid', 'fa-xmark');
     closeBtn.addEventListener('click', () => _enableButton(btn, modal));
 
     const inputForm = document.createElement('form');
