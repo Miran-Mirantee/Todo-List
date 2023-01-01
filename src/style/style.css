@@ -198,6 +198,11 @@ body{
     font-size: 24px;
 }
 
+.btn.fa-check{
+    font-size: 24px;
+    color: green;
+}
+
 .add-todo.btn{
     display: flex;
     align-items: center;
@@ -271,21 +276,26 @@ body{
 .todo.container{
     display: flex;
     justify-content: space-between;
-    gap: 4px;
-    padding: 4px 12px;
+    gap: 16px;
+    padding: 8px 12px;
     border-radius: 8px;
     background-color: #F0C987;
+}
+
+.todo.btn-panel{
+    align-items: flex-start;
+    margin-top: 6px;
 }
 
 .todo-panel{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    gap: 8px;
 }
 
 .expand-panel{
     display: flex;
-    background-color: rgb(233, 250, 160);
-    padding: 4px;
     height: 100px;
 }
 
@@ -301,14 +311,29 @@ input.todo{
     outline: none;
 }
 
+select.todo.priority,
 input[type="date"].todo,
 input[type="text"].todo{
+    color: black;
+    border-radius: 8px;
     font-size: 20px;
     padding: 4px 8px;
+    background-color: yellow;
 }
 
-input[type="date"].todo{
-    border-radius: 8px;
+input[type="text"].todo{
+    margin-right: auto;
+    height: 26px;
+    width: 450px;
+}
+
+input[type="text"].todo:disabled{
+    background-color: transparent;
+}
+
+input[type="date"].todo:disabled{
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
     text-shadow: 
         0 1px 0 white,
         0 -1px 0 white,
@@ -323,21 +348,6 @@ input[type="date"].todo{
         1px -1px 0 white,
         -1px -1px 0 white
     ;
-    color: black;
-}
-
-input[type="text"].todo{
-    width: 450px;
-}
-
-input.todo:disabled{
-    background-color: transparent;
-    color: black;
-}
-
-input[type="date"].todo:disabled{
-    background-color: white;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
 }
 
 input[type="date"].todo.deadline{
@@ -352,6 +362,18 @@ input[type="date"].todo.deadline-passed{
     background-color: grey;
 }
 
+select.todo.priority{
+    padding: 6px 8px;
+    border: none;
+}
+
+select.todo.priority:disabled{
+    opacity: 1;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
+    appearance: none;
+}
+
 textarea#desc{
     resize: none;
 }
@@ -360,12 +382,17 @@ textarea.todo{
     resize: none;
     width: 100%;
     border: none;
+    border-radius: 8px;
     outline: none;
+    background-color: yellow;
+    padding: 8px;
+    font-size: 14px;
 }
 
 textarea.todo:disabled{
-    background-color: transparent;
+    background-color: white;
     color: black;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
 }
 
 .modal-background{
