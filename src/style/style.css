@@ -311,6 +311,35 @@ input.todo{
     outline: none;
 }
 
+input[type="checkbox"].todo{
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
+    border-radius: 6px;
+    height: 20px;
+    width: 20px;
+}
+
+input[type="checkbox"].todo:checked:after{
+    background-color: #3C153B;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    height: 12px;
+    width: 12px;
+    border-radius: 4px;
+}
+
+input[type="checkbox"].todo:hover{
+    box-shadow: 0 0 3px 3px rgb(255, 255, 255, 0.3);
+    transition: all 0.25s linear;
+}
+
 select.todo.priority,
 input[type="date"].todo,
 input[type="text"].todo{
@@ -367,7 +396,16 @@ select.todo.priority{
     border: none;
 }
 
+select.todo.priority:hover{
+    cursor: pointer;
+}
+
+input[type="date"].todo::-webkit-calendar-picker-indicator:hover{
+    cursor: pointer;
+}
+
 select.todo.priority:disabled{
+    cursor: default;
     opacity: 1;
     background-color: white;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 40%);
