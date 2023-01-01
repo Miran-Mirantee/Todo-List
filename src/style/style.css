@@ -41,6 +41,7 @@ body{
     flex-direction: column;
     background-color: #6ba181;
     padding: 16px;
+    min-width: 220px;
     width: 300px;
     box-shadow: 
         0px 5px 2px 0 #386955 inset
@@ -232,7 +233,6 @@ body{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    width: 1100px;
     margin: 48px 0;
     background-color: #89BD9E;
     border-radius: 16px;
@@ -275,7 +275,6 @@ body{
 
 .todo.container{
     display: flex;
-    justify-content: space-between;
     gap: 16px;
     padding: 8px 12px;
     border-radius: 8px;
@@ -354,6 +353,12 @@ input[type="text"].todo{
     margin-right: auto;
     height: 26px;
     width: 450px;
+}
+
+@media (max-width: 1440px) {
+    input[type="text"].todo{
+        width: 300px;
+    }
 }
 
 input[type="text"].todo:disabled{
