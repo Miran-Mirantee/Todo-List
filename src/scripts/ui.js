@@ -74,7 +74,7 @@ const header = (() => {
     container.classList.add('header', 'container');
     const text = document.createElement('div');
     text.classList.add('header', 'text');
-    text.textContent = 'My Todo List';
+    text.textContent = 'MyTodo List';
     container.append(text);
     document.body.append(container);
 })();

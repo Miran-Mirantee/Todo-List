@@ -7,6 +7,21 @@ body{
     height: 100vh;
 }
 
+@font-face {
+    font-family: 'NothingYouCouldDo';
+    src: url(../font/NothingYouCouldDo-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'KauShanScript';
+    src: url(../font/KaushanScript-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Caveat';
+    src: url(../font/Caveat-Regular.ttf);
+}
+
 .hidden{
     display: none!important;
 }
@@ -27,8 +42,9 @@ body{
 
 .header.text {
     font-size: 48px;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: white;
+    font-family: 'NothingYouCouldDo';
 }
 
 .content.container{
@@ -46,6 +62,7 @@ body{
     box-shadow: 
         0px 5px 2px 0 #386955 inset
     ;
+    font-family: 'KauShanScript';
 }
 
 .sidebar.top-panel{
@@ -55,7 +72,7 @@ body{
 }
 
 .sidebar.text{
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
     color: #F0C987;
     text-shadow: 2px 2px 2px #386955;
@@ -70,7 +87,6 @@ body{
 }
 
 .sidebar.project-item{
-    font-weight: bold;
     color: #dcfcce;
     /* text-align: center; */
     border-radius: 8px;
@@ -254,7 +270,7 @@ body{
 
 .project.name{
     font-size: 36px;
-    font-weight: bold;
+    font-family: 'KauShanScript';
     width: 700px;
     border: none;
     outline: none;
@@ -305,6 +321,13 @@ body{
     align-items: center
 }
 
+select,
+textarea,
+input{
+    font-family: 'Caveat';
+    font-size: 26px;
+}
+
 input.todo{
     border: none;
     outline: none;
@@ -344,14 +367,12 @@ input[type="date"].todo,
 input[type="text"].todo{
     color: black;
     border-radius: 8px;
-    font-size: 20px;
     padding: 4px 8px;
     background-color: yellow;
 }
 
 input[type="text"].todo{
     margin-right: auto;
-    height: 26px;
     width: 450px;
 }
 
@@ -429,7 +450,7 @@ textarea.todo{
     outline: none;
     background-color: yellow;
     padding: 8px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 textarea.todo:disabled{
@@ -448,7 +469,6 @@ textarea.todo:disabled{
     top: 0;
     width: 100%;
     height: 100%;
-    /* overflow: auto; enable scroll if needed, is this thing even working? */
     background-color: rgba(0, 0, 0, 60%);
 }
 
@@ -460,6 +480,7 @@ textarea.todo:disabled{
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, 40%);
+    font-family: 'KauShanScript';
 }
 
 .modal.top-panel{
@@ -500,7 +521,6 @@ textarea.todo:disabled{
 
 .modal.input-container > label{
     color: #dcfcce;
-    font-weight: bold;
     font-size: 20px;
 }
 
@@ -510,7 +530,6 @@ textarea.todo:disabled{
     border: none;
     border-radius: 6px;
     padding: 4px 8px;
-    font-size: 20px;
     background-color: #ffdda2;
 }
 
