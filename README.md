@@ -5,9 +5,9 @@ This project is part of the Odin project, made with vanilla JavaScript, CSS, and
 https://fontawesome.com/
 
 ## fonts
-https://fonts.google.com/specimen/Nothing+You+Could+Do
-https://fonts.google.com/specimen/Caveat
-https://fonts.google.com/specimen/Kaushan+Script
+https://fonts.google.com/specimen/Nothing+You+Could+Do<br/>
+https://fonts.google.com/specimen/Caveat<br/>
+https://fonts.google.com/specimen/Kaushan+Script<br/>
 
 ## Demo
 
