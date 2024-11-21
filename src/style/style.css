@@ -356,8 +356,10 @@ input[type="date"].todo,
 input[type="text"].todo {
   color: black;
   border-radius: 8px;
-  padding: 4px 8px;
-  background-color: yellow;
+  border: none;
+  padding: 0 8px;
+  height: 45px;
+  box-shadow: 0 0 0 4px yellow inset;
 }
 
 input[type="text"].todo {
@@ -366,14 +368,9 @@ input[type="text"].todo {
   text-overflow: ellipsis;
 }
 
-@media (max-width: 1440px) {
-  input[type="text"].todo {
-    width: 300px;
-  }
-}
-
 input[type="text"].todo:disabled {
   background-color: transparent;
+  box-shadow: none;
 }
 
 input[type="date"].todo:disabled {
@@ -396,10 +393,9 @@ input[type="date"].todo.deadline-passed {
   background-color: grey;
 }
 
-select.todo.priority {
-  padding: 6px 8px;
+/* select.todo.priority {
   border: none;
-}
+} */
 
 select.todo.priority:hover {
   cursor: pointer;
@@ -427,7 +423,7 @@ textarea.todo {
   border: none;
   border-radius: 8px;
   outline: none;
-  background-color: yellow;
+  box-shadow: 0 0 0 4px yellow inset;
   padding: 8px;
   font-size: 20px;
 }
@@ -532,4 +528,10 @@ textarea.todo:disabled {
 
 .todo.container:has(.high) {
   background-color: #ff9770;
+}
+
+@media (max-width: 1440px) {
+  input[type="text"].todo {
+    width: 300px;
+  }
 }
