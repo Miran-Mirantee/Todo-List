@@ -223,7 +223,7 @@ body {
   justify-content: center;
   flex-grow: 1;
   box-shadow: 0 5px 2px 0px #be7303 inset;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .add-todo.btn > i,
