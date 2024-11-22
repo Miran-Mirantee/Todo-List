@@ -1,3 +1,7 @@
+html {
+  height: 100vh;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -22,8 +26,8 @@ body {
   src: url(../font/Caveat-Regular.ttf);
 }
 
-.hidden {
-  display: none !important;
+.expand-panel.hidden {
+  display: none;
 }
 
 .header.container {
@@ -38,7 +42,7 @@ body {
 }
 
 .header.text {
-  font-size: 48px;
+  font-size: 3rem;
   /* font-weight: bold; */
   color: white;
   font-family: "NothingYouCouldDo";
@@ -50,14 +54,30 @@ body {
 }
 
 .sidebar.container {
+  position: fixed;
   display: flex;
   flex-direction: column;
   background-color: #6ba181;
   padding: 16px;
   min-width: 220px;
   width: 300px;
+  height: calc(100% - 152px);
   box-shadow: 0px 5px 2px 0 #386955 inset;
   font-family: "KauShanScript";
+  left: 0;
+  z-index: 1;
+}
+
+.sidebar.expand-btn {
+  position: absolute;
+  right: -16px;
+  top: calc(50% - 32px);
+  background-color: #6ba181;
+  border-radius: 0 12px 12px 0;
+  height: 64px;
+  width: 16px;
+  cursor: pointer;
+  display: none;
 }
 
 .sidebar.top-panel {
@@ -67,7 +87,7 @@ body {
 }
 
 .sidebar.text {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: bold;
   color: #f0c987;
   text-shadow: 2px 2px 2px #386955;
@@ -86,7 +106,7 @@ body {
   /* text-align: center; */
   border-radius: 8px;
   padding: 8px 14px;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .sidebar.project-item:hover {
@@ -197,6 +217,7 @@ body {
 
 .project.area {
   display: flex;
+  margin-left: 332px;
   justify-content: center;
   flex-grow: 1;
   box-shadow: 0 5px 2px 0px #be7303 inset;
@@ -226,6 +247,7 @@ body {
 }
 
 .modal.close.btn,
+.expand-todo.btn,
 .edit-todo.btn,
 .delete-todo.btn {
   padding: 0;
@@ -258,11 +280,12 @@ body {
 }
 
 .project.name {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-family: "KauShanScript";
   width: 700px;
   border: none;
   outline: none;
+  text-overflow: ellipsis;
 }
 
 .project.name:disabled {
@@ -314,7 +337,7 @@ select,
 textarea,
 input {
   font-family: "Caveat";
-  font-size: 26px;
+  font-size: 1.5rem;
 }
 
 input.todo {
@@ -434,7 +457,6 @@ textarea.todo {
   outline: none;
   box-shadow: 0 0 0 4px yellow inset;
   padding: 8px;
-  font-size: 20px;
   margin-left: 44px;
 }
 
@@ -480,7 +502,7 @@ textarea.todo:disabled {
 .modal.header {
   color: white;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 2rem;
 }
 
 .modal.input-form {
@@ -506,7 +528,7 @@ textarea.todo:disabled {
 
 .modal.input-container > label {
   color: #dcfcce;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .modal.input-container > input,
@@ -540,8 +562,230 @@ textarea.todo:disabled {
   background-color: #ff9770;
 }
 
-@media (max-width: 1440px) {
+@media screen and (max-width: 1440px) {
   input[type="text"].todo {
-    width: 300px;
+    min-width: 0;
+    flex-grow: 1;
+    width: 0;
+  }
+
+  .project.container {
+    width: 95%;
+  }
+
+  .project.name {
+    width: 0;
+    min-width: 0;
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .project.area {
+    margin-left: 0;
+  }
+
+  .sidebar.expand-btn {
+    display: block;
+  }
+
+  .sidebar.container {
+    left: -332px;
+    transition: left 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  .sidebar.container.shown {
+    left: 0;
+    box-shadow: 32px 0 0 0 rgba(0, 0, 0, 0.08), 0px 5px 2px 0 #386955 inset;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .project.container {
+    width: 80%;
+  }
+
+  .sidebar.container {
+    box-sizing: border-box;
+    bottom: -60%;
+    height: 60%;
+    width: 100%;
+    left: auto;
+    transition: bottom 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    box-shadow: none;
+  }
+
+  .sidebar.container.shown {
+    bottom: 0;
+    box-shadow: 0 -32px 0 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .sidebar.expand-btn {
+    top: -32px;
+    right: calc(50% - 32px);
+    height: 32px;
+    width: 64px;
+    border-radius: 16px 16px 0 0;
+    background-color: #6ba181;
+  }
+
+  .todo-noDesc-panel {
+    flex-direction: column;
+    flex: 1;
+  }
+
+  input[type="text"].todo {
+    width: 100%;
+    box-sizing: border-box;
+    grid-column-start: span 2;
+  }
+
+  input[type="checkbox"].todo {
+    position: absolute;
+    top: 10px;
+    left: -34px;
+  }
+
+  textarea.todo {
+    margin-left: 28px;
+  }
+
+  .todo-noDesc-panel {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    margin-left: 28px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .todo.btn-panel {
+    display: grid;
+    grid-template-rows: repeat(2, 35px);
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+  }
+
+  .expand-todo.btn {
+    grid-column-start: span 2;
+    width: 100%;
+    grid-row-start: 2;
+  }
+
+  select {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project.container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .project.container {
+    margin-top: 24px;
+    width: 90%;
+  }
+
+  .header.text {
+    font-size: 2.4rem;
+  }
+
+  .add-todo.btn > i,
+  .delete-project.btn,
+  .change-name-project.btn {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  .btn > div {
+    display: none;
+  }
+
+  .project.name {
+    font-size: 1.8rem;
+  }
+
+  select,
+  textarea,
+  input {
+    font-size: 1.2rem;
+  }
+
+  input[type="checkbox"].todo {
+    top: calc(1rem - 13px);
+  }
+
+  select.todo.priority,
+  input[type="date"].todo,
+  input[type="text"].todo {
+    height: 2rem;
+  }
+
+  textarea.todo {
+    padding: 2px 8px;
+  }
+
+  .todo.btn-panel {
+    grid-template-rows: repeat(2, 2rem);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal.close.btn,
+  .expand-todo.btn,
+  .edit-todo.btn,
+  .delete-todo.btn {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .expand-todo.btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .header.container {
+    display: none;
+  }
+
+  .project.container {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding-bottom: 8px;
+  }
+
+  .project.top-panel {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .expand-todo.btn {
+    grid-column-start: span 1;
+    width: 2rem;
+    grid-row-start: 1;
+  }
+
+  .todo.btn-panel {
+    grid-template-rows: repeat(3, 2rem);
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  input[type="text"].todo {
+    grid-column-start: span 1;
+  }
+  .todo-noDesc-panel {
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
