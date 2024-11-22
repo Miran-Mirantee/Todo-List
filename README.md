@@ -10,4 +10,4 @@ https://fonts.google.com/specimen/Caveat<br/>
 https://fonts.google.com/specimen/Kaushan+Script<br/>
 
 ## Demo
-[https://miran-mirantee.github.io/Todo-List/](https://todo-list-fidlxma30-miranmirantees-projects.vercel.app)<br/>
+https://todo-list-git-main-miranmirantees-projects.vercel.app/<br/>
